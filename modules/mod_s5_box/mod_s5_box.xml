@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="4.0.0" client="site" method="upgrade">
+	<name>S5 Box</name>
+	<author>Shape5.com</author>
+	<creationDate>August 10th, 2018</creationDate>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>6.1.5</version>
+	<description>Choose from JavaScript or CSS3 powered animations. The S5 Box allows you to display any module in lightbox style popup activated by a class name. It can display up to 10 S5 Box's by simply adding a class name to any HTML element and a module position to your template XML file. Check out the tutorial on http://www.shape5.com/demo/elegance/s5_box/ for more information.</description>
+	<files>
+		<filename module="mod_s5_box">mod_s5_box.php</filename>
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>tmpl</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">		
+				<field name="" type="spacer" default="Instructions" label="Instructions: Use the settings below to alter the width of the S5 Box's be sure to publish a module to each corresponding position for the box to be enabled.&lt;br&gt;&lt;br&gt; 				
+				
+				You can use either % or px.  To use % simply add a number between 1-100.  To use a pixel width add a number greater than 100.
+				
+				&lt;br&gt;&lt;br&gt;Please visit the following url for a tutorial http://www.shape5.com/demo/elegance/s5_box/" description="" />
+				<field name="@spacer" type="spacer" default="" label="" description="" />   
+				<field name="s5_jsversion" type="list" default="css" label="Powered by" description="Choose either jQuery or CSS to power the S5 Box.">
+					<option value="jquery">jQuery</option>
+					<option value="css">CSS</option>
+				</field>
+				
+				<field name="s5_boxeffect" type="list" default="elastic" label="Effect Style" description="Choose the effect style for the S5 Box module when initialized via a user click">
+					<option value="none">None - Snap in</option>
+					<option value="elastic">Elastic</option>
+					<option value="fade">Fade</option>
+					<option value="twisterInDown">Twister In Down (CSS only)</option>
+					<option value="twisterInUp">Twister In Up (CSS only)</option>
+					<option value="swap">Swap (CSS only)</option>
+					<option value="puffIn">Puff In (CSS only)</option>
+					<option value="vanishIn">Vanish In (CSS only)</option>
+					<option value="tinRightIn">Tin Right In (CSS only)</option>
+					<option value="tinLeftIn">Tin Left In (CSS only)</option>
+					<option value="tinUpIn">Tin Up In (CSS only)</option>
+					<option value="tinDownIn">Tin Down In (CSS only)</option>					
+					<option value="boingInUp">Boing In Up (CSS only)</option>		
+					<option value="spaceInUp">Space In Up (CSS only)</option>
+					<option value="spaceInDown">Space In Down (CSS only)</option>
+					<option value="spaceInRight">Space In Right (CSS only)</option>
+					<option value="spaceInLeft">Space In Left (CSS only)</option>
+					
+				</field>
+				<field name="s5_boxspeed" type="text" default="400" size="5" label="Effect Speed (CSS only)" description="Enter the speed in milliseconds you desire for the effects to transition in.  For example you can enter 400 or for 1 second enter in 1000." />
+				
+				<field name="s5_boxminwidth" type="text" default="" size="5" label="Min Width" description="You can leave blank but if you don't like how the box's are appearing on smaller resolution screens you can enter a width in pixels here to stop it from shrinking more than you desire.  Enter 300 and it will shrink down until it hits a width of 300px" />
+				
+				<field name="@spacer" type="spacer" default="" label="" description="" />   
+				<field name="s5boxwidth1" type="text" default="35" size="5" label="S5 Box 1 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+
+				<field name="s5boxwidth2" type="text" default="35" size="5" label="S5 Box 2 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth3" type="text" default="35" size="5" label="S5 Box 3 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+
+				<field name="s5boxwidth4" type="text" default="35" size="5" label="S5 Box 4 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+
+				<field name="s5boxwidth5" type="text" default="35" size="5" label="S5 Box 5 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+						
+				<field name="s5boxwidth6" type="text" default="35" size="5" label="S5 Box 6 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth7" type="text" default="35" size="5" label="S5 Box 7 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth8" type="text" default="35" size="5" label="S5 Box 8 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth9" type="text" default="35" size="5" label="S5 Box 9 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth10" type="text" default="35" size="5" label="S5 Box 10 Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				<field name="s5boxwidth11" type="text" default="35" size="5" label="S5 Box Login Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+
+				<field name="s5boxwidth12" type="text" default="35" size="5" label="S5 Box Register Width" description="Enter the width you would like this S5 Box to show, it will be a percentage of the entire screen so entering '50' will show the box centered with a width of 50% of the entire screen.  If you desire a pixel width enter a number higher than 100 and the module will automatically switch to a pixel width layout based on the number you entered." />
+				<field name="@spacer" type="spacer" default="" label="" description="" />
+				
+				
+				<field name="moduleclass_sfx" type="text" readonly="true" label="DO NOT CHANGE" default="-s5_box" />
+		
+			</fieldset>
+		</fields>	
+	</config>
+</extension>

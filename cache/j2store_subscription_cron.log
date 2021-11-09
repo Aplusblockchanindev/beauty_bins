@@ -1,0 +1,28 @@
+
+-------------------------------------------------------------------------------------------
+
+Cron initiated	 [2021-11-09 14:26:16]
+
+Processing expiry control: Checking for changing Future to Active subscriptions	 [2021-11-09 14:26:16]
+
+			- Processed expiry control: Future to Active subscriptions: 0	 [2021-11-09 14:26:16]
+
+Processing expiry control: Checking for changing Active to Expire subscriptions	 [2021-11-09 14:26:16]
+
+			- Processed expiry control: Active to Expire subscriptions: 0	 [2021-11-09 14:26:16]
+
+Processing expiry control: Checking for changing Cancel to Expire subscriptions	 [2021-11-09 14:26:16]
+
+			- Processed expiry control: Cancel to Expire subscriptions: 0	 [2021-11-09 14:26:16]
+
+Processing mail: For notify first renewal from trial subscriptions	 [2021-11-09 14:26:16]
+
+			- Total Processed mail: To notify first renewal from trial subscriptions: 0	 [2021-11-09 14:26:16]
+
+Processing mail: To notify renewal subscriptions	 [2021-11-09 14:26:16]
+
+			- Total Processed mail: To notify renewal subscriptions: 0	 [2021-11-09 14:26:16]
+
+Processing subscription renewal	 [2021-11-09 14:26:16]
+
+		Initiating renewal process for the subscription: 6	 [2021-11-09 14:26:16]

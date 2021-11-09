@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="settings" label="COM_INGALLERY_COMPONENT">
+        <field name="purchase_code" type="text" size="15" default="" label="COM_INGALLERY_PURCHASE_CODE" description="COM_INGALLERY_PURCHASE_CODE_DESCR" />
+        <field name="load_mode" type="radio" default="all" label="COM_INGALLERY_SCRIPTS_LOAD_MODE" description="COM_INGALLERY_SCRIPTS_LOAD_MODE_DESCR">
+            <option value="all">COM_INGALLERY_ALL_PAGES</option>
+            <option value="certain">COM_INGALLERY_CERTAIN_PAGES</option>
+        </field>
+        <field name="load_gfont" type="radio" class="btn-group btn-group-yesno" default="1" label="COM_INGALLERY_LOAD_GFONT">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="load_masonry" type="radio" class="btn-group btn-group-yesno" default="1" label="COM_INGALLERY_LOAD_MASONRY_LIB">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="ajax_url_mode" type="list" default="router" label="COM_INGALLERY_AJAX_URL_MODE">
+            <option value="absolute">COM_INGALLERY_ABSOLUTE</option>
+            <option value="relative">COM_INGALLERY_RELATIVE</option>
+            <option value="router">COM_INGALLERY_ROUTER</option>
+        </field>
+        <field name="display_errors" type="radio" class="btn-group btn-group-yesno" default="0" label="COM_INGALLERY_DISPLAY_ERRORS">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="log_errors" type="radio" class="btn-group btn-group-yesno" default="1" label="COM_INGALLERY_LOG_ERRORS">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="previews_display_mode" type="list" default="download" label="COM_INGALLERY_PREVIEWS_DISPLAY_MODE">
+            <option value="direct">COM_INGALLERY_DIRECTLY_FROM_INSTAGRAM</option>
+            <option value="download">COM_INGALLERY_DOWNLOADED_FROM_WEBSITE</option>
+        </field>
+    </fieldset>
+    <fieldset name="ig" label="COM_INGALLERY_INSTAGRAM_SETTINGS">
+        <field name="ig_max_items" type="text" size="2" default="50" label="COM_INGALLERY_IG_MAX_ITEMS" description="COM_INGALLERY_IG_MAX_ITEMS_DESCR" />
+        <field name="ig_requests_rate_limit" type="text" size="2" default="0" label="COM_INGALLERY_IG_REQUESTS_RATE_LIMIT" description="COM_INGALLERY_IG_REQUESTS_RATE_LIMIT_DESCR" />
+        <field name="ig_requests_lock" type="radio" class="btn-group btn-group-yesno" default="1" label="COM_INGALLERY_IG_REQUESTS_LOCK" description="COM_INGALLERY_IG_REQUESTS_LOCK_DESCR">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="ig_requests_lock_time" type="text" size="5" default="1800" label="COM_INGALLERY_IG_REQUESTS_LOCK_TIME" description="COM_INGALLERY_IG_REQUESTS_LOCK_TIME_DESCR" />
+        <field name="ig_error_action" type="list" default="display_loaded" label="COM_INGALLERY_IG_ERROR_ACTION" description="COM_INGALLERY_IG_ERROR_ACTION_DESCR">
+            <option value="display_loaded">COM_INGALLERY_DISPLAY_LOADED</option>
+            <option value="throw_error">COM_INGALLERY_THROW_ERROR</option>
+        </field>
+    </fieldset>
+    <fieldset name="proxy" label="COM_INGALLERY_PROXY_SETTINGS">
+        <field name="proxy_use" type="radio" class="btn-group btn-group-yesno" default="0" label="COM_INGALLERY_USE_PROXY">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        <field name="proxy_url" type="text" size="15" default="" label="COM_INGALLERY_PROXY_URL" description="COM_INGALLERY_PROXY_URL_DESCR" />
+        <field name="proxy_auth" type="text" size="15" default="" label="COM_INGALLERY_PROXY_AUTH" description="COM_INGALLERY_PROXY_AUTH_DESCR" />
+        <field name="proxy_type" type="list" default="http" label="COM_INGALLERY_PROXY_TYPE">
+            <option value="http">HTTP(S)</option>
+            <option value="socks4">SOCKS4</option>
+            <option value="socks5">SOCKS5</option>
+        </field>
+        <field name="spacer1" type="spacer" hr="true" />
+        <field name="curl_interface" type="text" size="15" default="" label="COM_INGALLERY_CURL_INTERFACE" />
+    </fieldset>
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" class="inputbox" validate="rules" filter="rules" component="com_ingallery" section="component" />
+    </fieldset>
+</config>

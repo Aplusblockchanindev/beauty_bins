@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<extension type="module" version="3.1.0" method="upgrade" client="site">
+	<name>S5 Image and Content Fader v4</name>
+	<author>Shape5.com</author>
+	<creationDate>August 9th, 2018</creationDate>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>contact@shape5.com</authorEmail>
+	<authorUrl>www.shape5.com</authorUrl>
+	<version>4.4.1</version>
+	<description>This module will display images in 2 different ways, Joomla articles or HTML with images from any url and user defined content in one of 4 effect transitions. The article method pulls in Joomla articles from categories you specify. Each slide will function just like a Joomla article. You can change order, display according to publish date, have unlimited number of slides, etc. The second way is HTML method.	The fader includes many more options like choosing between actual size and stretch for your images and enter in pixels or percentages for your width, great for responsive/fluid websites!  Powered by Mootools/Jquery but if you experience conflicts you can enable legacy S5 Effects mode (contains less features than Mootools/Jquery version and only works in HTML mode).  </description>
+	<files>
+	<filename module="mod_s5_image_and_content_fader">mod_s5_image_and_content_fader.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/_item.php</filename>
+		<filename>tmpl/_firstimage.php</filename>
+		<filename>tmpl/index.html</filename>
+		<filename>js/fader.js</filename>
+		<filename>js/jd.gallery.transitions.js</filename>
+		<filename>js/jd.gallery.transitions.jquery.js</filename>
+		<filename>js/jd.gallery.namespaced.js</filename>
+		<filename>js/jd.gallery.js</filename>	
+		<filename>js/jd.gallery.jquery.js</filename>	
+		<filename>js/jquery-ui.min.js</filename>				
+		<filename>js/mootools.namespaced.js</filename>
+		<filename>images/fleche2.png</filename>
+		<filename>images/blank.gif</filename>
+		<filename>images/carrow1.gif</filename>
+		<filename>images/carrow2.gif</filename>
+		<filename>images/fleche1.png</filename>
+		<filename>css/s5imagecontent.css</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB.mod_s5_image_and_content_fader.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="pretext" type="textarea" cols="40" rows="4" default="" label="Pre-Text" description="Enter any pre-text message." />
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module (table.moduletable), this allows individual module styling" />
+				
+				<field name="s5IACFmethod" type="radio" class="btn-group btn-group-yesno" default="html" label="Choose Content Display Method" description="The article method pulls in articles from categories you specify in the article method tab and each slide will function just like a Joomla article. You can change order, display according to publish date, etc. If you choose the HTML method, you will manually enter in the text/html for each slide and the URLs for images.">
+					<option value="article">Article</option>
+					<option value="html">HTML</option>
+				</field>
+				<field type="spacer" name="spacer_intro" label="&lt;span style=&quot;width:50%;padding:20px;border-top:1px solid #333;border-bottom:1px solid #333;display:block;&quot;&gt;
+				The settings below apply to both the Article and HTML Methods. Once you've selected your preferred display method above, you will then need to proceed to either the Article Method or HTML Method tab (located above), and from there you can configure the settings specific to each method.
+				&lt;/span&gt;" />
+				<field name="background" type="text" default="" label="Background Color (leave blank for none) ex:FFFFFF" description="Enter the background color. Leave blank for none. This color shows behind the module and only shows when the images are still loading. After the images are loaded they appear over this color." />    
+				<field name="width" type="text" default="100%" label="Width, ex: 482px or 100%" description="Enter the width of the image fader in pixels or percentages for responsive/fluid style websites." />
+				<field name="height" type="text" default="900px" label="Height, ex: 900px (Used if Actual Size is selected below, and if Disable Stretching is set high for Stretch To Fit Image Sizing)" description="Enter the height of the module.
+				&lt;br /&gt;&lt;br /&gt;
+				Typically this setting works best by setting it to the actual height dimension of your images.
+				&lt;br /&gt;&lt;br /&gt;
+				The height will be used when Image Sizing is set to Actual Size.
+				&lt;br /&gt;&lt;br /&gt;
+				The height setting may also be used if Image Sizing is set to Stretch to Fit; it will take effect when the Disable Stretching screen width is reached. Until that point height is automatic." />
+				<field name="s5stretchimage" type="radio" class="btn-group btn-group-yesno" default="stretch" label="Image Sizing" description="Actual Size makes no changes to the size of the images, and will not stretch to fit the module's available area. The height of the module will be set to the Height parameter above, typically this should match the actual height of your images. You would not use this method for responsive sites.
+				&lt;br /&gt;&lt;br /&gt;
+				Stretch to Fit will force the images to the stretch to the width of the module. The height will be automatic, until the screen width entered in the parameter below is reached, at that point the Height parameter above is used, to accommodate better on smaller screens. This feature should only be used if the template was designed with a responsive or fluid layout.
+				&lt;br /&gt;&lt;br /&gt;
+				Images should all be the same height and width before you upload them, this module will not resize them to be equal. Some templates contain module overrides or specific css styling to overrides some of these features. ">
+					<option value="actualsize">Actual Size</option>
+					<option value="stretch">Stretch To Fit (Width Must Be Set To 100% Above)</option>
+				</field>
+				<field name="s5_imagecover" type="radio" class="btn-group btn-group-yesno" default="false" label="Enable Image Cover?" description="This option will set the background image for each slide to cover the entire fader. This can be needed on smaller devices. You may notice black areas above and below your image on these screens.">
+					<option value="true">Enabled</option>
+					<option value="false">Disabled</option>
+				</field>
+				<field name="s5pixelwidth" type="text" default="0px" label="If Stretch To Fit Is Enabled (Disable Stretching - Optional). Enter the screen width to disable stretching, ex: 800px, 0px to disable. (Height setting will be used at this screen width)" description="Enter a screen width at which your images will no longer stretch once the browser reaches to the specified width. If the browser size meets the specified width the height of the module will become the Height parameter set above. For example, if this field is set to 600px and the Height field is set to 400px, the module will become 400px in height when the screen is less than 600px wide, and the height will be automatic when it is higher than 600px in width. This is ideal for smaller devices to allow for more space for text. This often works best by using the actual width dimension of your image.
+				&lt;br /&gt;&lt;br /&gt;
+				Note - because the images must remain in aspect ratio and because the module will be set to a specific height, most likely some of the width of the images will not be shown at certain screen sizes.
+				&lt;br /&gt;&lt;br /&gt;
+				To disable this function simply enter 0px. Width must be set to 100%." /> 
+				<field name="s5mobile_height" type="text" default="300px" label="If Stretch To Fit Is Enabled (Mobile Height - Optional), ex: 300px." description="This is the height the module will show at when the screen reaches the Mobile Height Trigger set below. For example if the Mobile Height setting is set to 400px and Mobile Height Trigger is set to 600px, then when the screen reaches 600px the module will become 400px tall.
+				&lt;br /&gt;&lt;br /&gt;
+				If Mobile Height Trigger is set to 0px, this field will not take effect. Width must be set to 100%." /> 
+				<field name="s5pixelwidth_mobile" type="text" default="0px" label="If Stretch To Fit Is Enabled (Mobile Height Trigger - Optional). Enter the screen width to enable mobile height, ex: 600px, 0px to disable" description="Enter a screen width at which the entire module will be set to the height below. This is intended for small screens, it will disable image stretching and override the Disable Stretching screen width set above. This is completely optional, and only intended if you want a smaller module for mobile devices.
+				&lt;br /&gt;&lt;br /&gt;
+				Note - because the images must remain in aspect ratio and because the module will be set to a specific height, most likely some of the width of the images will not be shown at certain screen sizes.
+				&lt;br /&gt;&lt;br /&gt;
+				To disable this function simply enter 0px. Width must be set to 100%." /> 
+				<field name="s5zoom_image" type="radio" class="btn-group btn-group-yesno" default="no" label="Zoom Effect" description="Enabling this feature will cause the images to slowly zoom in. The speed and size can be controlled with the features below. Note - this will only work with modern browsers that support proper CSS3 calls.">
+					<option value="yes">Enabled</option>
+					<option value="no">Disabled</option>
+				</field>
+				<field name="s5zoomeffect_width_disable" type="text" default="750px" label="If Zoom Is Enabled (Zoom Disable Width). Enter the screen width to disable zoom, ex: 800px, 0px to disable" description="Enter a screen width at which so your images will stop zooming in when the screen width reaches this width.
+				&lt;br /&gt;&lt;br /&gt;
+				To disable this function simply enter 0px" /> 
+				<field name="s5zoomeffect_size" type="text" default="130" label="If Zoom Is Enabled (Zoom Effect Size)" description="How large would you like the image to zoom to. Enter a size anywhere between 100 and 500, enter numbers only. The higher the number, the larger the image will zoom." />
+				<field name="s5zoomeffect_time" type="text" default="14" label="If Zoom Is Enabled (Zoom Effect Time)" description="How many seconds should it take for the image to zoom to the size entered above. Enter any number between 1 and 100, the higher the number the longer the effect will take." /> 
+				<field name="jseffect" type="list" default="fade" label="Effect (mootools/jquery version only)" description="Choose the effect you would like to happen between image transitions.  Mootools/Jquery versions only, S5 effects will just fade in and out">
+					<option value="fade">Fade</option>
+					<option value="continuoushorizontal">Continuous Horizontal</option>
+					<option value="continuousvertical">Continuous Vertical</option>
+					<option value="slideleft">Slide Left</option>
+					<option value="slideright">Slide Right</option>
+				</field>
+				<field name="jslibrary" type="radio" class="btn-group btn-group-yesno" default="mootools" label="Javascript Library" description="The Mootools/Jquery option has a directory slider and navigation arrows while s5 effects only displays the images and content. Mootools will be used in Joomla 2.5 and lower, and Jquery will be used in Joomla 3.X+">
+					<option value="mootools">Mootools/Jquery</option>
+					<option value="s5effects">Legacy (S5 Effects)</option>
+				</field>
+				<field name="s5_dropdowntext" type="text" default="Open Gallery" label="Drop Tab Text" description="Enter the text for drop down gallery tab if enabled" />
+				<field name="s5_delay" type="text" default="9000" label="Visible Time" description="This is the amount of time that each slide will show for before transitioning to the next." />
+				<field name="s5_hide_time" type="text" default="500" label="Hide Time" description="This is the amount of time that each slide will take to transition out before the next one transitions in. This is only for the jquery/mootools version." />
+				<field name="s5_opacity_time" type="text" default="500" label="Opacity Time" description="This is the amount of time that each slide's text will take to transition from 0% opacity to 100% opacity. This is only for the jquery/mootools version." />
+				<field name="s5_slide_opacity" type="text" default="1000" label="Slide Opacity" description="Enter the opacity of the text slide in increments of 10. Enter 100 to disable opacity." />
+				<field name="fullscreenheight" type="radio" class="btn-group btn-group-yesno" default="no" label="Full Screen Height" description="If you choose full screen height the module will calculate your visible vertical screen height and set the module to this height.  This is useful for websites that you desire the module to take up the entire screen with logo and menu on top of the module.">
+					<option value="yes">Enabled</option>
+					<option value="no">Disabled</option>
+				</field>
+				<field name="hoverstopplay" type="radio" class="btn-group btn-group-yesno" default="yes" label="Pause Rotation on Hover" description="If you choose yes the transitioning of the slides from image to image will stop on the current slide you are hovered over.  This is good if you want your users to get a chance to read each slide but can also prevent them seeing other images if they don't realize they need to move off the IACF to have the rotation continue.  We recommend enabling picture carousel or navigation arrows.">
+					<option value="yes">Enabled</option>
+					<option value="no">Disabled</option>
+				</field>
+				<field name="s5_hidecar" type="radio" class="btn-group btn-group-yesno" default="truee" label="Navigation Carousel/Buttons" description="Choose to enable or disable the navigation carousel.">
+					<option value="truee">Enabled</option>
+					<option value="falsee">Disabled</option>
+				</field>
+				<field name="s5_thumbnailstretch" type="radio" class="btn-group btn-group-yesno" default="true" label="Thumbnails Sizes" description="Choose to show thumbnails shrunk down to fit the thumbnail width and height or to show as actual size">
+					<option value="true">Shrink to Fit</option>
+					<option value="false">Actual Size</option>
+				</field>
+				<field name="s5_hidebut" type="radio" class="btn-group btn-group-yesno" default="truee" label="Navigation Arrows" description="Choose to enable or disable the left and right navigation arrows">
+					<option value="truee">Enabled</option>
+					<option value="falsee">Disabled</option>
+				</field>
+				<field name="s5_hidetext" type="radio" class="btn-group btn-group-yesno" default="truee" label="Slide Text" description="Choose to enable or disable the slide text that pops up during each slide transition. This option disables all text on each slide.">
+					<option value="truee">Enabled</option>
+					<option value="falsee">Disabled</option>
+				</field>
+				<field name="s5_hideh2" type="radio" class="btn-group btn-group-yesno" default="true" label="Slide Title" description="Choose to enable or disable the h2 title. Disabling this feature will turn the title off for all slides.">
+					<option value="true">Enabled</option>
+					<option value="false">Disabled</option>
+				</field>
+				<field name="s5_hidefaderimages" type="radio" class="btn-group btn-group-yesno" default="no" label="Images" description="If you choose to disable the images the text for each slide will still show.  This is useful if you just want to put the fader on a fixed backgroud like we did in our Zoka Transports design.">
+					<option value="no">Enabled</option>
+					<option value="yes">Disabled</option>
+				</field>
+				<field name="s5_verticalhorizontal" type="radio" default="false" class="btn-group btn-group-yesno" label="Layout" description="Choose horiztonal or vertical thumbnail layout">
+					<option value="true">Vertical</option>
+					<option value="false">Horizontal</option>
+				</field>
+			</fieldset>
+			<fieldset name="article" label="Article Method">	
+				<field type="spacer" name="spacer_basic_instr" label="&lt;span style=&quot;width:50%;display:block;&quot;&gt;	
+				If using the Article Method you will need to select the category or categories that you have articles added to that you want to show as the slides in the module. In each article you will need to add an intro image, which will become the slide's image.
+				&lt;/span&gt;" />
+				<field
+					name="catid"
+					type="category"
+					extension="com_content"
+					multiple="true"
+					default=""
+					size="10"
+					label="Categories to Pull Slide Articles"
+					description="Select one or more categories to pull slides from. Be sure each article in the category contains an intro image." >
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+				<field
+					name="ordering"
+					type="list"
+					default="a.publish_up"
+					label="Order Articles By"
+					description="Choose to show your desired way in which the articles are displayed in the fader">
+					<option
+						value="a.publish_up">Published Date</option>
+					<option
+						value="a.created">Created Date</option>
+					<option
+						value="a.ordering">Ordering</option>
+					<option
+						value="rand()">Random</option>
+				</field>
+				<field
+					name="readmore"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="Hide Read More?"
+					description="You can force hide all read more buttons on articles. If using custom code from Shape5 a template you may need to do this and then manually enter the custom code we used on the demo in your articles">
+					<option value="1">JSHOW</option>
+					<option value="0">JHIDE</option>
+				</field>
+				<field
+					name="s5_articlelink"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="Enable Links on Images?"
+					description="You can choose to enable or disable the article links for each slide image. These links will send a user to the full article when the slide image is clicked.">
+					<option value="true">JYES</option>
+					<option value="false">JNO</option>
+				</field>
+				<field
+					name="image"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="Hide any Images in Articles?"
+					description="If you set this to yes any additional images outside of the intro image that are added in an article will be hidden.">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>								<field name="s5_hidecattitle" type="radio" class="btn-group btn-group-yesno" default="false" label="Show Category Name?" description="Choose to enable or disable the category name the article is published to. Disabling this feature will turn the title off for all slides.">					<option value="true">Yes</option>					<option value="false">No</option>				</field>
+			</fieldset>
+			<fieldset name="text" label="HTML Method">	
+				<field name="s5_randomorder" type="radio" class="btn-group btn-group-yesno" default="no" label="Randomize Slides" description="Choose to show the image slides in random order">
+					<option value="yes">Enabled</option>
+					<option value="no">Disabled</option>
+				</field>
+				<field type="spacer" name="spacer_basic_image" label="&lt;span style=&quot;width:100%;display:block;&quot;&gt;
+				If you are using the HTML Method you will need to enter the text you want to show as well as the image URLs for each slide.
+				&lt;/span&gt;" />
+				<field name="title1" type="textarea" filter="raw" default="" label="Image 1 Title" description="Enter the text for the first slide title." />
+				<field name="picture1text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 1 Text" description="Enter any text you would like over image 1." />
+				<field name="picture1" type="text" default="" label="Image 1 Location URL" description="Enter the entire URL of image 1." />
+				<field name="picture1link" type="text" default="" label="Image 1 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 1, leave blank if none." />
+				<field name="title2" type="textarea" filter="raw" default="" label="Image 2 Title" description="Enter the text for the second slide title." />
+				<field name="picture2text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 2 Text" description="Enter any text you would like over image 2." />
+				<field name="picture2" type="text" default="" label="Image 2 Location URL" description="Enter the entire URL of image 2." />
+				<field name="picture2link" type="text" default="" label="Image 2 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 2, leave blank if none." />
+				<field name="title3" type="textarea" filter="raw" default="" label="Image 3 Title" description="Enter the text for the third slide title." />
+				<field name="picture3text" rows="2" filter="raw"  cols="60" type="textarea" default="" label="Image 3 Text" description="Enter any text you would like over image 3." />
+				<field name="picture3" type="text" default="" label="Image 3 Location URL" description="Enter the entire URL of image 3." />
+				<field name="picture3link" type="text" default="" label="Image 3 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 3, leave blank if none." />
+				<field name="title4" type="textarea" filter="raw" default="" label="Image 4 Title" description="Enter the text for the fourth slide title." />
+				<field name="picture4text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 4 Text" description="Enter any text you would like over image 4." />
+				<field name="picture4" type="text" default="" label="Image 4 Location URL" description="Enter the entire URL of image 4." />
+				<field name="picture4link" type="text" default="" label="Image 4 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 4, leave blank if none." />
+				<field name="title5" type="textarea" filter="raw" default="" label="Image 5 Title" description="Enter the text for the fifth slide title." />
+				<field name="picture5text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 5 Text" description="Enter any text you would like over image 5." />
+				<field name="picture5" type="text" default="" label="Image 5 Location URL" description="Enter the entire URL of image 5." />
+				<field name="picture5link" type="text" default="" label="Image 5 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 5, leave blank if none." />
+				<field name="title6" type="textarea" filter="raw" default="" label="Image 6 Title" description="Enter the text for the sixth slide title." />
+				<field name="picture6text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 6 Text" description="Enter any text you would like over image 6." />
+				<field name="picture6" type="text" default="" label="Image 6 Location URL" description="Enter the entire URL of image 6." />
+				<field name="picture6link" type="text" default="" label="Image 6 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 6, leave blank if none." />
+				<field name="title7" type="textarea" filter="raw" default="" label="Image 7 Title" description="Enter the text for the seventh slide title." />
+				<field name="picture7text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 7 Text" description="Enter any text you would like over image 7." />
+				<field name="picture7" type="text" default="" label="Image 7 Location URL" description="Enter the entire URL of image 7." />
+				<field name="picture7link" type="text" default="" label="Image 7 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 7, leave blank if none." />
+				<field name="title8" type="textarea" filter="raw" default="" label="Image 8 Title" description="Enter the text for the eight slide title." />
+				<field name="picture8text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 8 Text" description="Enter any text you would like over image 8." />
+				<field name="picture8" type="text" default="" label="Image 8 Location URL" description="Enter the entire URL of image 8." />
+				<field name="picture8link" type="text" default="" label="Image 8 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 8, leave blank if none." />
+				<field name="title9" type="textarea" filter="raw" default="" label="Image 9 Title" description="Enter the text for the nineth slide title." />
+				<field name="picture9text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 9 Text" description="Enter any text you would like over image 9." />
+				<field name="picture9" type="text" default="" label="Image 9 Location URL" description="Enter the entire URL of image 9." />
+				<field name="picture9link" type="text" default="" label="Image 9 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 9, leave blank if none." />
+				<field name="title10" type="textarea" filter="raw" default="" label="Image 10 Title" description="Enter the text for the tenth slide title." />
+				<field name="picture10text" rows="2" filter="raw" cols="60" type="textarea" default="" label="Image 10 Text" description="Enter any text you would like over image 10." />
+				<field name="picture10" type="text" default="" label="Image 10 Location URL" description="Enter the entire URL of image 10." />
+				<field name="picture10link" type="text" default="" label="Image 10 Hyperlink URL (leave blank if none)" description="Enter the entire Hyperlink URL (leave blank if none) of image 10, leave blank if none." />
+			</fieldset>			
+		</fields>
+	</config>
+</extension>

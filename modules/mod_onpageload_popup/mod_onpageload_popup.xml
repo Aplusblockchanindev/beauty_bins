@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+	<name>Auto OnPageLoad Popup</name>
+	<author>Infyways Solutions</author>
+	<creationDate>25 August 2021</creationDate>
+	<copyright>Copyright (C) 2011 - 2021 Infyways Solutions. All rights reserved.</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<authorEmail>info@infyways.com</authorEmail>
+	<authorUrl>https://www.infyways.com</authorUrl>
+	<version>8.9</version>
+	<description><![CDATA[
+	<h4>Thank you for installing Auto onPageLoad Popup.</h4><hr/>For any support and queries <a href="https://support.infyways.com" target="_blank">Click Here</a></br>For other Joomla! extensions please visit : <a href="https://store.infyways.com/" target="_blank" >https://store.infyways.com/</a></br>Please rate and review our extension at Joomla Extensions  Directory <a href ="https://extensions.joomla.org/extension/style-a-design/popups-a-iframes/auto-onpageload-popup/" target="_blank"> Click Here</a>
+	]]></description>
+	<files>
+		<filename module="mod_onpageload_popup">mod_onpageload_popup.php</filename>
+		<filename module="mod_onpageload_popup">helper.php</filename>
+		<filename module="mod_onpageload_popup">mobiledetect.php</filename>
+		<filename module="mod_onpageload_popup">index.html</filename>
+		<folder module="mod_onpageload_popup">tmpl</folder>
+		<folder module="mod_onpageload_popup">admin</folder>
+		<folder module="mod_onpageload_popup">layouts</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="data0" label="Module Settings">
+				<field name="trigger" default="0" type="list" class="btn-group" label="Trigger" description="Select the option you want the popup to trigger automatically">
+						<option value="0">OnPage Load</option>
+						<option value="1">OnPage Scroll</option>
+						<option value="2">OnPage Exit</option>
+						<option value="3">OnScroll to Bottom</option>
+						<option value="4">OnClick</option>
+						<option value="5">OnRightClick</option>
+				</field>
+				<field name="scrollamount" type="text"  label="Trigger Scroll Amount" default="100" description="The scroll pixels from top after which the popup will open automatically on scroll. Works only when trigger scroll is enabled" showon="trigger:1" />	
+				<field name="onclickHide" default="0" type="list" label="Popup Link" description="You can hide the popup link in the module">
+						<option value="1">Show</option>
+						<option value="0">Hide</option>
+				</field>
+				<field name="onclickElement" default="0" type="list" label="OnClick Element" description="Select the clickable item which you would like to appear inside the module." showon="onclickHide:1">
+						<option value="1">HTML Text</option>
+						<option value="0">Image</option>	
+				</field>
+				<field name="onclickText" type="textarea"  label="OnClick Text" default="" filter="raw" description="Enter your message here. Caution : Don't press/use Enter key."  rows="5" cols="40" showon="onclickElement:1[AND]onclickHide:1"/>
+				
+                <field name="stickyElement" default="" type="list" label="Sticky OnClick Element" description="Set the position of the text element" showon="onclickHide:1">
+						<option value="">Module Position</option>
+                    <option value="right_top">Right Top</option>
+                    <option value="right_bottom">Right Bottom</option>
+                    <option value="left_top">Left Top</option>
+                    <option value="left_bottom">Left Bottom</option>	
+                    
+				</field>
+				
+				<field name="stickyElementbgColor" type="color" label="Background Color" default="#f34343" description="Select the background color." format="rgba" showon="onclickHide:1"/>
+				<field name="stickyElementColor" type="color" label="Text Color" default="#ffffff" description="Select the Text color." format="rgba" showon="onclickHide:1"/>
+				
+				<field name="onclickImage" directory="/images" type="media" label="Select an Image" description="Select the image which you would like to appear in the module" showon="onclickElement:0[AND]onclickHide:1"/>
+							
+				<field name="mode" default="0" type="radio" class="btn-group" label="Test Mode" description="Set to OFF to set cookie/session. If you are testing the module and don't want to set the cookie, then set the module to ON.">
+						<option value="1">ON</option>
+						<option value="0">OFF</option>
+				</field>
+				
+				<field name="auto_open" type="list" default="1" label="Auto Popup Open Timer" description="If you assign it to default then popup will appear suddenly when page loads or you can assign a value to delay the popup" showon="trigger:0,1,2,3">
+						<option value="1">Default</option>
+						<option value="0">Assign Value</option>
+				</field>
+				<field name="open_timer" type="number" default="1000" filter="integer" label="Popup Automatically Opens after" description="Define the time(in millseconds) after which you would like to open the popup automatically"  showon="auto_open:0[AND]trigger:0,1,2,3"/>
+				<field name="auto_close" type="list" default="0" label="Auto Popup Close Timer" description="You can close the popup automatically after few seconds " showon="trigger:0,1,2,3">
+						<option value="1">Enable</option>
+						<option value="0">Disable</option>
+				</field>
+				<field name="close_timer" type="text" default="5000" label="Popup Automatically closes after" description="Define the time(in millseconds) after which you would like to close the popup automatically" showon="auto_close:1[AND]trigger:0,1,2,3" />
+				
+				<field type="spacer" name="cookieSettings" label="&lt;h3&gt;Cookie&lt;/h3&gt;"/>
+				<field name="hideLink" default="0" type="list" label="Hide Popup Link" description="Hide Popup link when cookie is set." showon="onclickHide:1">
+						<option value="1">Show</option>
+						<option value="0">Hide</option>
+				</field>
+				<field name="cookie" default="1" type="list" label="After Close Stay Hidden for" description="Cookie expires basis">
+						<option value="0">Session</option>
+						<option value="1">Days</option>
+						<option value="2">Hour</option>
+						<option value="3">Minutes</option>
+						<option value="4">Seconds</option>
+					
+						
+				</field>
+				<field name="cookie_expire" type="number" filter="integer" default="1" label="Cookie Duration" description="Mention cookie expire time in minutes, hours or days" showon="cookie:1,2,3,4"/>
+				<field name="cookieSet" default="onClose" type="list" label="Set Cookie or Session on" description="Select how you would like to set the closing of the popup.">
+						<option value="afterClose">On Closing Button</option>
+						<option value="afterLoad">On Page Load</option>
+				</field>
+			</fieldset>
+			<fieldset name="data1" label="Content Settings" addfieldpath="/administrator/components/com_content/models/fields">
+				<field name="input_method" type="list" default="1" label="Message Input Method" description="Select the input method of messages.">
+						<option value="1">Editor</option>
+						<option value="0">Select Joomla Articles</option>
+						<option value="2">Media URL</option>
+						<option value="3">Image</option>
+	
+				</field>
+				<field name="popupImage" directory="/images" type="media" label="Select an Image" description="Select the image to show inside the popup" showon="input_method:3"/>
+				<field name="popupImgUrl" type="text"  label="Image URL" default="" description="Set the URL for the popup image" showon="input_method:3"/>
+				<field name="popupImgUrlTarget" default="1" type="list" class="btn-group" label="Image URL Target " description="Set the target for the popup image URL" showon="input_method:3">
+						<option value="_blank">New Tab</option>
+						<option value="_self">Same Tab</option>
+			</field>
+			
+			
+
+				<field name="message_above" type="editor"  label="Message Above Module" default="" filter="raw" description="Enter your message here. Caution : Don't press/use Enter key."  rows="5" cols="40" showon="input_method:1"/>
+				<field name="message1" type="modal_article"  select="true" new="true" edit="true" clear="true" label="Message Above Module" default="" description="Select an article to be displayed." showon="input_method:0"/>
+				<field name="mod_id" type="getmodule" label="Select a Module" description="Select the module which you would like to know inside the popup." showon="input_method:0,1" addfieldpath="/modules/mod_onpageload_popup/admin/" >
+				<option value="0">No Module Selected</option>
+				</field>
+				<field name="message_below" type="editor"  label="Message Below Module" default="" filter="raw" description="Enter your message here. Caution : Don't press/use Enter key."  rows="5" cols="40" showon="input_method:1"/>
+				<field name="message2" type="modal_article"  select="true" new="true" edit="true" clear="true" label="Message Below Module" default="" description="Select an article to be displayed." showon="input_method:0"/>
+				<field name="popupMedia" type="text"  label="Media URL" default="" description="Supports Youtube, Vimeo, or Google Maps" showon="input_method:2"/>
+				
+				
+			</fieldset>
+				<fieldset name="data2" label="Appearance">
+				<field type="spacer" name="popupBox" label="&lt;h3&gt;Popup Box&lt;/h3&gt;"/>
+				<field name="height" type="number" filter="integer" default="300" label="Height" description="Mention the height of Popup Box"/>
+				<field name="width" type="number" filter="integer" default="500" label="Width" description="Mention the width of the Popup Box"/>
+				<field name="popBgColor" type="color" label="Background Color" default="#ffffff" description="Select the popup background color." format="rgba"/>
+				<field name="popTxtColor" type="color" label="Text Color" default="#333" description="Select the popup text color." format="rgb"/>
+				
+			<field name="popupPadding" type="number" filter="integer"  label="Content Padding" default="10" description="Padding around the popup contents"/>
+			<field name="popupMargin" type="number" filter="integer"  label="Content Margin" default="20" description="Margin around the popup contents"/>
+			<field name="animation" type="animation" default="" label="Motion Effects" description="" addfieldpath="/modules/mod_onpageload_popup/admin/"/>
+				<field name="animationDuration" type="list" default="1" label="Animation Duration" description="Select the animation duration." showon="animation!:">
+				<option value="default">Normal</option>
+				<option value="slow">Slow</option>
+				<option value="slower">Slower</option>
+				<option value="fast">Fast</option>
+				<option value="faster">Faster</option>
+				</field>
+
+				<field type="spacer" name="popupBorder" label="&lt;h3&gt;Border&lt;/h3&gt;"/>
+				<field name="borderType" type="list" default="1" label="Style" description="Select the border style.">
+				<option value="none">None</option>
+				<option value="solid">Solid</option>
+				<option value="dotted">Dotted</option>
+				<option value="dashed">Dashed</option>
+				<option value="double">Double</option>
+				<option value="inset">Inset</option>
+				<option value="outset">Outset</option>
+				<option value="ridge">Ridge </option>
+				<option value="groove">Groove</option>
+				</field>
+				<field name="borderColor" type="color" label="Color" default="#ffffff" description="Select the border color." format="rgba"/>
+				<field name="popBorderRadius" type="number" filter="integer" label="Radius" default="4" description="Set the border radius of the popup"/>
+				<field name="borderSize" type="number" filter="integer" label="Width" default="10px" description="Set the width"/>
+				
+				<field type="spacer" name="backgroundOverlay" label="&lt;h3&gt;Background Overlay&lt;/h3&gt;"/>
+				<field name="bgImage" type="list" default="1" label="Image" description="Select the background image.">
+						<option value="0">None</option>
+						<option value="user">Define</option>
+						<option value="1">Style 1</option>
+						<option value="2">Style 2</option>
+						<option value="3">Style 3</option>
+						<option value="4">Style 4</option>
+						<option value="5">Style 5</option>
+						<option value="6">Style 6</option>
+						<option value="7">Style 7</option>
+						<option value="8">Style 8</option>
+						<option value="9">Style 9</option>
+						<option value="10">Style 10</option>
+					
+			</field>
+			<field name="bgUserImg" directory="/images" type="media" label="Select an Image" description="Select the background image" showon="bgImage:user"/>
+			<field name="bgUserRepeat" default="1" type="list" class="btn-group" label="Repeat" description="Select the repeat property of the background overlay." showon="bgImage:user">
+						<option value="repeat">Repeat</option>
+						<option value="repeat-x">Repeat X</option>
+						<option value="repeat-y">Repeat Y</option>
+						<option value="no-repeat">No Repeat</option>
+						<option value="round">Round</option>
+						<option value="inherit">Inherit</option>
+						<option value="initial">Initial</option>
+			</field>
+			<field name="bgUserSize" default="auto" type="combo" class="btn-group" label="Size" description="Select the size property of the background overlay." size="7" showon="bgImage:user" >
+						<option value="auto">Auto</option>
+						<option value="cover">Cover</option>
+						<option value="contain">Contain</option>
+						<option value="100% 100%">100% 100%</option>
+				
+			</field>
+			
+			<field name="bgUserPosition" default="center" type="combo" class="btn-group" label="Position" description="Select the position property of the background overlay." size="7" showon="bgImage:user" >
+						<option value="left top">left top</option>
+						<option value="left center">left center</option>
+						<option value="left bottom">left bottom</option>
+						<option value="right top">right top</option>
+						<option value="right center">right center</option>
+						<option value="right bottom">right bottom</option>
+						<option value="center top">center top</option>
+						<option value="center center">center center</option>
+						<option value="center bottom">center bottom</option>
+				
+			</field>
+			<field name="bgColor" type="color" label="Color" default="#000000" description="Select the background color." format="rgba" showon="bgImage:0"/>
+			<field name="closeClick" default="1" type="radio" class="btn-group" label="Close on Click " description="Close Popup on clicking the overlay." >
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+			</field>
+			
+				<field type="spacer" name="closeButton" label="&lt;h3&gt;Close Button&lt;/h3&gt;"/>
+				<field name="modal" default="1" type="list" class="btn-group" label="Button" description="Select whether you want to enable or disable the close button.">
+						<option value="1">Show</option>
+						<option value="0">Hide</option>
+				</field>
+				<field name="closeButtonStyle" type="list" default="1" label="Button Style" description="Select the close button style." showon="modal:1">
+						<option value="0">Custom</option>
+						<option value="1">Style 1</option>
+						<option value="2">Style 2</option>
+						<option value="3">Style 3</option>
+						<option value="4">Style 4</option>
+						<option value="5">Style 5</option>
+						<option value="6">Style 6</option>
+						<option value="7">Style 7</option>
+						<option value="8">Style 8</option>
+						<option value="9">Style 9</option>
+						<option value="10">Style 10</option>
+					
+				</field>
+				<field name="closeButtonPosition" type="list" default="1" label="Button Position" description="Select the close button Position." showon="modal:1[AND]closeButtonStyle:0">
+						<option value="btn-top-right">Top Right</option>
+						<option value="btn-top-left">Top Left</option>
+						<option value="pg-top-right">Page Top Right</option>
+						<option value="pg-top-left">Page Top Left</option>
+				</field>
+			<field name="flatButtonColor" type="color" label="Color" default="#000000" description="Custom Button Color" showon="modal:1[AND]closeButtonStyle:0"/>
+			<field name="flatButtonSize" type="combo" label="Size" default="50px" description="Custom Button Size" showon="modal:1[AND]closeButtonStyle:0">
+					<option value="40px">40px</option>
+					<option value="50px">50px</option>
+					<option value="60px">60px</option>
+			</field>		
+			</fieldset>
+			<fieldset name="advanced" label="Advanced">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="" />
+				<field name="jsfiles" type="list" default="1" label="Include jQuery Files" description="You can define jQuery files inside the head or body in case of conflicts.">
+						<option value="1">Head</option>
+						<option value="0">Body</option>
+				</field>
+			
+			
+			<field name="mobileDevices" default="0" type="radio" class="btn-group" label="Disable for Mobile Devices" description="Set to Yes if you want to disable the popup for mobile devices.">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+			</field>
+			<field name="loginDisable" default="0" type="radio" class="btn-group" label="Disable After Login" description="If you don't want to show after login, then set it to Yes.">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+			</field>
+			<field name="scrollPage" default="0" type="radio" class="btn-group" label="Scroll Web Page " description="Set Yes if you want to allow the user to scroll the web page when popup is open." >
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+			</field>
+			
+			<field name="minify" default="0" type="radio" class="btn-group" label="Minify JS and CSS" description="Set to Yes to use the minified version of CSS and JS files">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+			</field>
+			<field name="autoSize" default="false" type="list" class="btn-group" label="Popup Auto Resize" description="Set to Yes to if you want the popup to resize automaticall according to the contents">
+						<option value="true">Yes</option>
+						<option value="false">No</option>
+			</field>
+			<field name="extraCSS" type="textarea"  label="Additional CSS" default="" filter="raw" description="You can add extra CSS if you want"  rows="5" cols="40"/>
+			<field name="robject" type="text" default="body" label="Right Click Element" description="Deflaut element for right click" showon="trigger:5"/>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+		<server type="extension" priority="1" name="Auto OnpageLoad Popup updater">https://updates.infyways.com/AutoOnpageloadPopup/update.xml</server>
+	</updateservers>
+</extension>

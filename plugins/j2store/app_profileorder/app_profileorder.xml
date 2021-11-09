@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>Pay Later / Pay against Invoice</name>
+    <version>1.6</version>
+    <creationDate>NOV 2018</creationDate>
+    <author>Alagesan</author>
+    <authorEmail>supports@j2store.org</authorEmail>
+    <authorUrl>http://www.j2store.org</authorUrl>
+    <copyright>2018 J2Store</copyright>
+    <license>GNU General Public License v2</license>
+    <description>Pay Later / Pay against Invoice</description>
+    <scriptfile>script.app_profileorder.php</scriptfile>
+    <files>
+        <filename plugin="app_profileorder">app_profileorder.php</filename>
+        <folder>app_profileorder</folder>
+        <filename>index.html</filename>
+    </files>
+    <languages folder="languages">
+        <language tag="en-GB">en-GB.plg_j2store_app_profileorder.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="J2STORE_BASIC_SETTINGS"
+                      addfieldpath="/administrator/components/com_j2store/models/fields">
+                <field name="order_interval_time" type="number" label="j2store_app_myprofile_order_interval_time" default="0"
+                       description="j2store_app_myprofile_order_interval_time_desc"/>
+                <field name="order_expired_date" type="number" label="j2store_app_myprofile_order_expired_date" default="0"
+                       description="j2store_app_myprofile_order_expired_date_desc"/>
+                <field name="order_paynow_button_text" type="text" label="J2STORE_APP_MYPROFILE_ORDER_PAY_NOW_BUTTON_TEXT" description="J2STORE_APP_MYPROFILE_ORDER_PAY_NOW_BUTTON_TEXT_DESC"
+                       default="J2STORE_APP_MYPROFILE_ORDER_PAY_NOW" />
+                <field name="orderstatuses" type="orderstatuslist" multiple="true" label="J2STORE_APP_MYPROFILE_ORDER_STATUS" description="J2STORE_APP_MYPROFILE_ORDER_STATUS_DESC" addfieldpath="/administrator/components/com_j2store/models/fields" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

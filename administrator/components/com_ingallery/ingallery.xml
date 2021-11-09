@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.6.1" method="upgrade">
+    <name>com_ingallery</name>
+    <creationDate>2017</creationDate>
+    <author>Oleg Micriucov (ZyX)</author>
+    <authorEmail>info@allforjoomla.com</authorEmail>
+    <authorUrl>https://allforjoomla.com</authorUrl>
+    <copyright>Copyright (c) 2020 Oleg Micriucov</copyright>
+    <license>http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL</license>
+    <version>1.217.7</version>
+    <description>COM_INGALLERY_DESCR</description>
+	
+    <install>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/install.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>ingallery.php</filename>
+        <filename>controller.php</filename>
+        <folder>controllers</folder>
+        <folder>views</folder>
+        <folder>models</folder>
+    </files>
+    <media destination="com_ingallery" folder="media">
+        <filename>index.html</filename>
+        <folder>colorpicker</folder>
+        <folder>css</folder>
+        <folder>font</folder>
+        <folder>images</folder>
+        <folder>js</folder>
+        <folder>cache</folder>
+    </media>
+    <administration>
+        <menu>COM_INGALLERY_LABEL</menu>
+        <files folder="admin">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>ingallery.php</filename>
+            <folder>controllers</folder>
+            <folder>languages</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="admin/languages">
+            <language tag="en-GB">en-GB.com_ingallery.ini</language>
+            <language tag="en-GB">en-GB.com_ingallery.sys.ini</language>
+            <language tag="ru-RU">ru-RU.com_ingallery.ini</language>
+            <language tag="ru-RU">ru-RU.com_ingallery.sys.ini</language>
+            <language tag="de-DE">de-DE.com_ingallery.ini</language>
+            <language tag="de-DE">de-DE.com_ingallery.sys.ini</language>
+            <language tag="tr-TR">tr-TR.com_ingallery.ini</language>
+            <language tag="tr-TR">tr-TR.com_ingallery.sys.ini</language>
+            <language tag="es-ES">es-ES.com_ingallery.ini</language>
+            <language tag="es-ES">es-ES.com_ingallery.sys.ini</language>
+            <language tag="ar-AA">ar-AA.com_ingallery.ini</language>
+            <language tag="ar-AA">ar-AA.com_ingallery.sys.ini</language>
+            <language tag="it-IT">it-IT.com_ingallery.ini</language>
+            <language tag="it-IT">it-IT.com_ingallery.sys.ini</language>
+            <language tag="fr-FR">fr-FR.com_ingallery.ini</language>
+            <language tag="fr-FR">fr-FR.com_ingallery.sys.ini</language>
+            <language tag="hi-IN">hi-IN.com_ingallery.ini</language>
+            <language tag="hi-IN">hi-IN.com_ingallery.sys.ini</language>
+            <language tag="cs-CZ">cs-CZ.com_ingallery.ini</language>
+            <language tag="cs-CZ">cs-CZ.com_ingallery.sys.ini</language>
+            <language tag="sk-SK">sk-SK.com_ingallery.ini</language>
+            <language tag="sk-SK">sk-SK.com_ingallery.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

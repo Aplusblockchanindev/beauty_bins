@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension type="module" version="1.0.0" client="site" method="upgrade">
+
+	<name>S5 MailChimp Signup</name>
+
+	<author>Shape5.com</author>
+
+	<creationDate>August 14th,2018</creationDate>
+
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+
+	<version>1.2.1</version>
+
+	<description>The S5 MailChimp Signup module allows you to easily add a MailChimp Newsletter signup to your site so users can signup via the forum and be auto added to any list you specify in the admin of the module.
+
+	</description>
+
+	<files>
+
+		<filename module="mod_s5_mailchimp_signup">mod_s5_mailchimp_signup.php</filename>
+
+		<folder>css</folder>
+
+		<folder>tmpl</folder>
+
+		<folder>files</folder>
+
+		<folder>js</folder>
+
+		<filename>index.html</filename>
+
+	</files>
+
+	<languages>
+		<language tag="en-GB">en-GB.mod_s5_mailchimp_signup.ini</language>
+	</languages>
+
+	<config>
+
+		<fields name="params">
+
+			<fieldset name="basic">		
+
+				<field name="moduleclass_sfx" type="text" label="Module Suffix" default="" />
+
+				 <field filter="raw" name="mailchimp_pretext" type="textarea" cols="40" rows="4" default="" label="Pre-Text" description="Enter any pre-text message." />
+
+				<field name="" type="spacer" default="Instructions" label="Instructions: &lt;br&gt; &lt;br&gt; 
+
+				
+
+				You'll need to get the following and enter below before using:&lt;br&gt; &lt;br&gt; 
+
+				1. MailChimp API Key: Grab an API Key from http://admin.mailchimp.com/account/api/&lt;br&gt; &lt;br&gt; 
+
+				2. MailChimp Unique List ID: You'll need to have a list created.  Then go to Lists > Signup Forms > Embedded Forms. Look in the window of 'Copy/paste onto your site' and look through the code for the id of your list as shown: id=f4ed35b8c7'
+
+				
+
+				
+
+				&lt;br&gt; 				
+
+				" description="" />
+
+				
+
+				
+
+				<field name="@spacer" type="spacer" default="" label="" description="" />   
+
+				
+
+			
+
+				
+
+				<field name="mailchimp_emailaddresstext" type="text" default="Email Address..." label="Input Text" description="Enter the text you would like to show for the inputbox" />   
+
+				<field name="mailchimp_subscribe" type="text" default="Join" label="Button Text" description="Enter the text you would like to show for the submit button" />   
+
+				<field name="mailchimp_apikey" type="text" default="" label="MailChimp API Key" description="Grab an API Key from http://admin.mailchimp.com/account/api and enter here" />   
+
+				<field name="mailchimp_listid" type="text" default="" label="MailChimp Unique List ID" description="Go to: Lists > Signup Forms > Embedded Forms. Look in the window of 'Copy/paste onto your site' and look through the code for the id of your list as shown: id=f4ed35b8c7' method='post'" />   
+
+				
+
+				
+
+		
+
+			</fieldset>
+
+		</fields>	
+
+	</config>
+
+</extension>
+

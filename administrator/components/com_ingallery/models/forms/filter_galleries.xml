@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="list">
+		<field
+            name="fullordering"
+			type="list"
+			label="COM_TAGS_LIST_FULL_ORDERING"
+			onchange="this.form.submit();"
+			default="a.id DESC"
+			>
+			<option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.id ASC">JGRID_HEADING_ID_ASC</option>
+			<option value="a.id DESC">JGRID_HEADING_ID_DESC</option>
+			<option value="a.title ASC">JGLOBAL_TITLE_ASC</option>
+			<option value="a.title DESC">JGLOBAL_TITLE_DESC</option>
+            <option value="a.created_at ASC">COM_INGALLERY_CREATED_AT_ASC</option>
+			<option value="a.created_at DESC">COM_INGALLERY_CREATED_AT_DESC</option>
+            <option value="a.created_by_name ASC">COM_INGALLERY_CREATED_BY_ASC</option>
+			<option value="a.created_by_name DESC">COM_INGALLERY_CREATED_BY_DESC</option>
+            <option value="a.updated_at ASC">COM_INGALLERY_UPDATED_AT_ASC</option>
+			<option value="a.updated_at DESC">COM_INGALLERY_UPDATED_AT_DESC</option>
+            <option value="a.updated_by_name ASC">COM_INGALLERY_UPDATED_BY_ASC</option>
+			<option value="a.updated_by_name DESC">COM_INGALLERY_UPDATED_BY_DESC</option>
+		</field>
+		<field
+			name="limit"
+			type="limitbox"
+			label="COM_TAGS_LIST_LIMIT"
+			description="COM_TAGS_LIST_LIMIT_DESC"
+			class="input-mini"
+			default="25"
+			onchange="this.form.submit();"
+		/>
+	</fields>
+</form>

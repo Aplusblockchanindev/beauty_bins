@@ -1,0 +1,71 @@
+.j2store_subscription_edit_button{
+    text-align: right;
+}
+input.calender_subscription{
+    width: 70px;
+}
+.j2store_subscription_detail_view dt,
+.j2store_subscription_detail_view dd{
+    padding: 2px 0;
+}
+.calender_hours_subscription{
+    width: 22px;
+}
+.j2store_subscription_edit_button > h3 {
+    float: left;
+    margin-bottom: 0;
+}
+.j2store_subscription_detail_view .muted {
+    color: #ddd;
+}
+.j2store_subscription_detail_view .j2store_susbcription_edit_message {
+    padding: 15px 0 0;
+}
+#subscription_history_type{
+    width: auto;
+}
+input.invalid,
+textarea.invalid{
+    border: 1px solid #9d261d;
+}
+span.label-future{
+    background-color: violet;
+}
+.input-checkbox label.checkbox{
+    display: inline-block;
+}
+.edit_orderitem_price,
+.edit_orderitem_name, .remove_order_fee, .remove_order_shipping, .edit_orderitem_attributes, .remove_orderitem_attribute, .edit_shipping_name, .edit_orderitem_quantity{
+    cursor: pointer;
+}
+.orderitem_price_edit_cont,
+.orderitem_price_text_cont{
+    display: inline-block;
+}
+.orderitem_price_field {
+    width: 60px;
+}
+.edit_orderitem_name_cont, .edit_orderitem_name_out, .edit_shipping_name_out {
+    display: inline-block;
+}
+.remove_order_fee, .remove_orderitem_attribute, .remove_order_shipping{
+    color: red;
+}
+span.label-in_trial{
+    background-color: #16a8ff;
+}
+span.label-card_expired{
+    background-color: #e40050;
+}
+span.label-canceled{
+    background-color: #8c560a;
+}
+input.orderitem_quantity_field{
+    width: 50px;
+}
+.subs_update_status_notify_option{
+    margin-top: 10px;
+}
+.j2store_subscription_detail_view .calendar-container {
+    color: #333;
+}

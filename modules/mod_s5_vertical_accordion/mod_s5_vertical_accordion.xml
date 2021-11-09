@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<extension type="module" version="2.0.0" method="upgrade" client="site">
+	<name>S5 Vertical Accordion</name>
+	<author>Shape5.com</author>
+	<creationDate>August 10th,2018</creationDate>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>contact@shape5.com</authorEmail>
+	<authorUrl>www.shape5.com</authorUrl>
+	<version>4.0.1</version>
+	<description>This module will display up to 10 Joomla modules in a vertical accordion module.</description>
+	<files>
+		<filename module="mod_s5_vertical_accordion">mod_s5_vertical_accordion.php</filename>
+			<filename>tmpl/default.php</filename>
+			<filename>helper.php</filename>
+			<filename>tmpl/index.html</filename>
+			<filename>css/s5_vertical_accordion.css</filename>
+			<filename>images/s5_va_active_l.png</filename>
+			<filename>images/s5_va_inactive_l.png</filename>
+			<filename>images/s5_va_active_r.png</filename>
+			<filename>images/s5_va_inactive_r.png</filename>
+			<filename>index.html</filename>
+			<filename>js/jquery-ui.min.js</filename>
+	</files>
+	<config>
+		<fields name="params">
+		<fieldset name="basic">
+		<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="fieldMODULECLASSSUFFIX" />
+		<field type="spacer" name="spacer0" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;The S5 Vertical Accordion module allows you to publish up to 10 modules of any kind into accordion. Simply publish this module to any page on your site that you desire. Then publish any module to s5_va_1, s5_va_2, etc. to all pages. The modules published to these positions will become the accordion items. Make sure to specify the accordion titles below.&lt;/span&gt;" />
+		<field filter="raw" name="s5_va_pretext" type="textarea" cols="40" rows="5" default="" label="Pre-Text" description="Enter any pre-text message." />				
+		<field name="s5_va_width" type="text" default="500" label="Width - Enter 100% for a fluid layout" />
+		<field name="s5_va_click_or_hover" type="radio" default="click" label="Trigger Method" description="Will the accordion open on mouseover or onclick?">
+			<option value="mouse">On Mouse Over</option>
+			<option value="click">On Click</option>
+		</field>
+		<field name="s5_va_opacity" type="radio" default="yes" label="Opacity Transition Effect" description="Will the accordion fade during transition?">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+		<field name="s5_va_autorun" type="text" default="5" label="Slide Transition In Seconds - Enter 0 To Disable Auto Run" description="How often should the accordion transition to the next slide?" />
+		<field name="title1" type="text" default="Title 1" label="Title For s5_va_1 Accordion" description="" />
+		<field name="title2" type="text" default="" label="Title For s5_va_2 Accordion" description="" />
+		<field name="title3" type="text" default="" label="Title For s5_va_3 Accordion" description="" />
+		<field name="title4" type="text" default="" label="Title For s5_va_4 Accordion" description="" />
+		<field name="title5" type="text" default="" label="Title For s5_va_5 Accordion" description="" />
+		<field name="title6" type="text" default="" label="Title For s5_va_6 Accordion" description="" />
+		<field name="title7" type="text" default="" label="Title For s5_va_7 Accordion" description="" />
+		<field name="title8" type="text" default="" label="Title For s5_va_8 Accordion" description="" />
+		<field name="title9" type="text" default="" label="Title For s5_va_9 Accordion" description="" />
+		<field name="title10" type="text" default="" label="Title For s5_va_10 Accordion" description="" />
+	</fieldset>
+		</fields>
+	</config>
+</extension>

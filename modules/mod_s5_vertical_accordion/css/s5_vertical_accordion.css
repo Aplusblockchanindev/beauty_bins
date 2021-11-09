@@ -1,0 +1,52 @@
+.s5_va_active, .s5_va_inactive  { 
+cursor:pointer;
+font-size:12pt;position: relative;z-index: 1;
+}
+
+#s5_va_accordion {
+border-left:solid 1px #DADADA;
+border-right:solid 1px #DADADA;
+border-bottom:solid 1px #DADADA;
+}
+
+.s5_va_element {
+background:#FFFFFF;
+overflow:hidden !important;
+}
+
+.s5_va_element_inner { 
+padding:8px; 
+margin:0px;
+}
+
+.s5_va_active {
+background:url(../images/s5_va_active_r.png) no-repeat top right;
+height:49px;
+margin-bottom:-1px;
+}
+
+.s5_va_active span.s5_va_h3_inner_span {
+background:url(../images/s5_va_active_l.png) no-repeat top left;
+height:49px;
+margin-right:48px;
+display:block;
+overflow:hidden;
+padding-top:16px;
+padding-left:14px;
+}
+
+.s5_va_inactive {
+background:url(../images/s5_va_inactive_r.png) no-repeat top right;
+height:49px;
+margin-bottom:-1px;
+}
+
+.s5_va_inactive span.s5_va_h3_inner_span {
+background:url(../images/s5_va_inactive_l.png) no-repeat top left;
+height:49px;
+margin-right:48px;
+display:block;
+overflow:hidden;
+padding-top:16px;
+padding-left:14px;
+}

@@ -1,0 +1,13 @@
+.s5_disqus_comments_view_comments a {
+padding-left:30px;
+background:url(../images/s5_disqus_comments.png) no-repeat top left;
+}
+
+.s5_disqus_comments_area {
+padding-top:30px;
+}
+
+p.readmore a {
+display:inline-block;
+float:none;
+}

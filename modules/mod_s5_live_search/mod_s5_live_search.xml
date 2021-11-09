@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension	type="module" version="3.0.0"	client="site" method="upgrade">
+	<name>Shape 5 Live Search</name>
+	<author>Shape5.com</author>
+	<creationDate>06/12/2009</creationDate>
+	<copyright>This Module is released under the GNU/GPL License</copyright>
+	<authorEmail>contact@shape5.com</authorEmail>
+	<authorUrl>www.shape5.com</authorUrl>
+	<version>3.0</version>
+	<description>Ajax search module for Joomla</description>
+	<files>
+		<filename module="mod_s5_live_search">mod_s5_live_search.php</filename>		
+		<filename module="mod_s5_live_search">index.html</filename>	
+		<filename module="mod_s5_live_search">css/s5_ls.css</filename>
+		<filename module="mod_s5_live_search">tmpl/default.php</filename>
+		<filename module="mod_s5_live_search">tmpl/index.html</filename>		
+		<filename module="mod_s5_live_search">js/s5_ls_fade.js</filename>
+		<filename module="mod_s5_live_search">js/index.html</filename>
+		<filename module="mod_s5_live_search">images/loading.gif</filename>
+		<filename module="mod_s5_live_search">images/s5_bar.png</filename>
+		<filename module="mod_s5_live_search">images/s5_exit.png</filename>
+		<filename module="mod_s5_live_search">images/s5_ls_arrow.png</filename>
+		<filename module="mod_s5_live_search">images/s5_result1.png</filename>
+		<filename module="mod_s5_live_search">images/s5_result2.png</filename>
+	</files>	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+		<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<field type="spacer" name="spacer1" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Ajax Loader Icon Settings&lt;/span&gt;" />
+		<field name="spacer11" type="spacer"  hr="true" /> 
+		<field type="spacer" name="spacer2" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;You may generate your own loading icon from http://www.ajaxload.info/ Name the file loading.gif and over-write the exisiting image in modules\mod_s5_live_search\images with your own.&lt;/span&gt;" />
+		<field type="spacer" name="spacer22" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Because every template can display an inputbox differently you will need to use the left and top margin fieldeters to adjust the positioning of the icon. Use a negative left margin to overlap the ajax icon over top of your inputbox, ex: -20 This will cause the icon to move to the left and overlap the inputbox. For further clarification of this please visit our forum thread entitled Live Search Installation Tips under the Live Search forum board.&lt;/span&gt;" />
+		<field name="icon_ml" type="text" default="-19" label="Margin Left" />
+		<field name="icon_mt" type="text" default="18" label="Margin Top" />
+		<field name="icon_height" type="text" default="14" label="Height - Width is automatically calculated." />
+		
+		<field type="spacer" name="spacer3" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Top and Bottom Bar Settings&lt;/span&gt;" />
+		<field name="spacer31" type="spacer" hr="true" />
+		<field name="bar_font_color" type="text" default="333333" label="Font Color" />	
+		<field name="bar_font_size" type="text" default="12" label="Font Size" />	
+		<field name="bar_bg_color" type="text" default="E4E4E3" label="Background Color" />	
+		<field name="bar_border_color" type="text" default="9F9E9E" label="Top Bar Bottom Border Color" />	
+		<field name="bar_padding_lr" type="text" default="10" label="Padding Left and Right" />
+		<field name="bar_padding_tb" type="text" default="6" label="Padding Top and Bottom" />
+		
+		<field type="spacer" name="spacer4" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Results Settings&lt;/span&gt;" />
+		<field name="spacer41" type="spacer" hr="true" />
+		<field name="result_font_size" type="text" default="12" label="Font Size" />	
+		<field name="result_padding_lr" type="text" default="14" label="Padding Left and Right" />
+		<field name="result_padding_tb" type="text" default="6" label="Padding Top and Bottom" />
+		<field name="searchword_color" type="text" default="E2E1E1" label="Search Word Highlight Color" />
+		<field name="result1_font_color" type="text" default="333333" label="Result 1 Font Color" />	
+		<field name="result2_font_color" type="text" default="000000" label="Result 2 Font Color" />	
+		<field name="result1_link_font_color" type="text" default="506E88" label="Result 1 Article Link Font Color" />	
+		<field name="result2_link_font_color" type="text" default="333333" label="Result 2 Article Link Font Color" />	
+		<field name="result1_readmore_font_color" type="text" default="A13939" label="Result 1 Read More Link Font Color" />	
+		<field name="result2_readmore_font_color" type="text" default="A13939" label="Result 2 Read More Link Font Color" />	
+		<field name="result1_bg_color" type="text" default="FFFFFF" label="Result 1 Background Color" />	
+		<field name="result2_bg_color" type="text" default="F5F5F5" label="Result 2 Background Color" />	
+		<field name="result1_bg_hover_color" type="text" default="E6F8F8" label="Result 1 Background Hover Color" />	
+		<field name="result2_bg_hover_color" type="text" default="EAEAEA" label="Result 2 Background Hover Color" />		
+		<field name="result1_border_color" type="text" default="CCCCCC" label="Result 1 Bottom Border Color" />	
+		<field name="result2_border_color" type="text" default="BFBFBF" label="Result 2 Bottom Border Color" />	
+		
+		<field type="spacer" name="spacer5" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Pop-Up Window Settings&lt;/span&gt;" />
+		<field name="spacer51" type="spacer" hr="true" />
+		<field name="width" type="text" default="20" label="Inputbox Width" description="Size of the search text box in characters" />
+		<field name="popup_width" type="text" default="400" label="Width" description="Popup width" />	
+		<field name="popup_mt" type="text" default="5" label="Margin Top" />			
+		<field name="popup_mb" type="text" default="10" label="Margin bottom" />	
+		<field name="popup_ml" type="text" default="0" label="Margin Left - Use a negative margin to move the popup to the left. Example: -10" />
+		<field name="popup_mr" type="text" default="0" label="Margin Right - Use a negative margin to move the popup to the right. Example: -10" />	
+		<field name="border_color" type="text" default="9F9E9E" label="Border Color" />	
+		<field name="border_size" type="text" default="1" label="Border Size" />	
+		
+		<field type="spacer" name="spacer6" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Text Settings&lt;/span&gt;" />
+		<field name="spacer61" type="spacer" hr="true" />
+		<field name="text" type="text" default="Live Search..." label="Default Search Text" description="fieldTEXT" />		
+		<field name="button_text" type="text" default="" label="Button Text" description="fieldBUTTONTEXT" />		
+		<field name="more_results_text" type="text" size="60" default="Search Results - Click Here For Full Results" label="More Results Text" description="More results text" />
+		<field name="no_results_text" type="text" size="60" default="No results found" label="No Results Text" description="No results text" />
+		<field name="readmore_text" type="text" size="60" default="Read More..." label="Read More Text" />
+		
+		<field type="spacer" name="spacer7" label="&lt;span style=&quot;width:474px;display:block;font-weight:bold&quot;&gt;Miscellaneous Settings&lt;/span&gt;" />
+		<field name="spacer71" type="spacer" hr="true" />
+		<field name="button" type="radio" default="Yes" label="Show Search Button?" description="Display a Search Button">
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		</field>
+		<field name="button_pos" type="list" default="right" label="Button Position" description="Position of the button relative to the search box">
+			<option value="right">Right</option>
+			<option value="left">Left</option>
+			<option value="top">Top</option>
+			<option value="bottom">Bottom</option>
+		</field>
+		<field name="searchphrase" type="list" default="any" label="Searchphrase">
+			<option value="any">Any words</option>
+			<option value="all">All words</option>
+			<option value="exact">Exact phrase</option>
+		</field>
+		<field name="ordering" type="list" default="newest" label="Search order">
+			<option value="alpha">Alphabetical</option>
+			<option value="category">Section/Category</option>
+			<option value="newest">Newest first</option>
+			<option value="oldest">Oldest first</option>
+			<option value="popular">Most popular</option>
+		</field>
+		<field name="limit" type="list" default="5" label="Limit Search To How Many Results?">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="20">20</option>
+			<option value="25">25</option>
+			<option value="30">30</option>
+			<option value="50">50</option>
+		</field>				
+		</fieldset>
+		
+
+	<fieldset name="advanced">
+		<field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+			<option value="1">Use global</option>
+			<option value="0">No caching</option>
+		</field>
+		<field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+	</fieldset>
+	</fields>
+	</config>
+</extension>

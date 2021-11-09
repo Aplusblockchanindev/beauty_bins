@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="j2store" method="upgrade">
+    <name>Stripe</name>
+    <version>1.59</version>
+    <creationDate>APR 2021</creationDate>
+    <author>Alagesan</author>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>http://www.j2store.org</authorUrl>
+    <copyright>2021 J2Store</copyright>
+    <license>GNU General Public License v3 or later versions</license>
+    <description>J2STORE_STRIPE_PLUGIN_DESC</description>
+
+    <scriptfile>script.payment_stripe.php</scriptfile>
+
+    <files>
+        <filename plugin="payment_stripe">payment_stripe.php</filename>
+        <filename>index.html</filename>
+        <filename>stripev2.php</filename>
+        <filename>stripev3.php</filename>
+        <folder>payment_stripe</folder>
+        <folder>library</folder>
+    </files>
+
+    <languages folder="languages">
+        <language tag="en-GB">en-GB.plg_j2store_payment_stripe.ini</language>
+        <language tag="en-GB">en-GB.plg_j2store_payment_stripe.sys.ini
+        </language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="display_name" type="text" size="30" default=""
+                       label="j2store_plugin_display_name" description="j2store_plugin_display_name_desc"/>
+                <field name="display_image" type="media"
+                       label="j2store_plugin_display_image" description="j2store_plugin_display_image_desc"/>
+                <field type="spacer"/>
+                <field name="surcharge_percent" type="text" size="30" default=""
+                       label="j2store_plugin_surcharge_percent" description="j2store_plugin_surcharge_percent_desc"/>
+                <field name="surcharge_fixed" type="text" size="30" default="" label="j2store_plugin_surcharge_fixed"
+                       description="j2store_plugin_surcharge_fixed_desc"/>
+                <field type="spacer"/>
+
+                <field name="stripe_secret_key" type="text" size="50" default=""
+                       label="j2store_stripe_api_key" description="j2store_stripe_api_key_desc"/>
+                <field name="stripe_publish_key" type="text" size="50"
+                       default="" label="j2store_stripe_publish_key" description="j2store_stripe_publish_key_desc"/>
+
+                <field name="sandbox" type="radio" default="0" class="btn-group"
+                       label="J2STORE_USE_SANDBOX" description="J2STORE_USE_SANDBOX_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="stripe_test_secret_key" type="text" size="50"
+                       default="" label="j2store_stripe_test_api_key" description="j2store_stripe_test_api_key_desc"/>
+                <field name="stripe_test_publish_key" type="text" size="50"
+                       default="" label="j2store_stripe_test_publish_key"
+                       description="j2store_stripe_test_publish_key_desc"/>
+                <field type="spacer"/>
+                <field name="stripe_charge_mode" type="radio" default="1" class="btn-group"
+                       label="j2store_stripe_charge_mode" description="j2store_stripe_charge_mode_desc">
+                    <option value="1">J2STORE_SALE</option>
+                    <option value="0">J2STORE_AUTHORIZE</option>
+                </field>
+
+                <field name="form_type" type="radio" size="50" default="normal"
+                       label="j2store_stripe_form_type" description="j2store_stripe_form_type_desc">
+                    <option value="normal">j2store_normal_form</option>
+                    <option value="popup">j2store_popup_form</option>
+                    <option value="inbuilt">j2store_stripe_inbuilt_form</option>
+                </field>
+
+                <field name="disable_zip_code_in_inbuilt_form" type="radio" default="0" class="btn-group"
+                       label="j2store_stripe_disable_zip_code_in_inbuilt_form" description="j2store_stripe_disable_zip_code_in_inbuilt_form_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="intent_payment_notice" type="customnotice" label="j2store_stripe_payment_intent_notice"
+                       addfieldpath="/administrator/components/com_j2store/models/fields"/>
+                <field name="is_payment_intent" type="radio" size="50" default="0" class="btn-group"
+                       label="j2store_stripe_is_payment_intent" description="j2store_stripe_is_payment_intent_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="ssl_version_v1" type="radio" size="50" default="0" class="btn-group"
+                       label="j2store_stripe_ssl_version_v1" description="j2store_stripe_ssl_version_v1_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="enable_card_holder_name" type="radio" class="btn-group" size="50" default="1" label="j2store_stripe_enable_card_holder_name" description="j2store_stripe_enable_card_holder_name_desc">
+                    <option value="1">j2store_yes</option>
+                    <option value="0">j2store_no</option>
+                </field>
+
+                <field name="company_name" type="text" size="30" default="" label="j2store_stripe_company_name"
+                       description="j2store_stripe_company_name_desc"/>
+                <field name="form_description" type="text" size="30" default="" label="j2store_stripe_form_description"
+                       description="j2store_stripe_form_description_desc"/>
+                <field name="enable_zip" type="radio" size="50" default="0" class="btn-group"
+                       label="j2store_stripe_enable_zip" description="j2store_stripe_enable_zip_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="allow_remember_me" type="radio" default="1" class="btn-group"
+                       label="j2store_stripe_allow_remember_me" description="j2store_stripe_allow_remember_me_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="send_customer_address" type="radio" default="0" class="btn-group"
+                       label="j2store_stripe_send_customer_address"
+                       description="j2store_stripe_send_customer_address_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+                <field name="send_shipping" type="radio" default="0" class="btn-group"
+                       label="j2store_stripe_shipping_address_enable"
+                       description="j2store_stripe_shipping_address_enable_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field name="enable_bitcoin" type="radio" default="0" class="btn-group"
+                       label="j2store_stripe_enable_bitcoin" description="j2store_stripe_enable_bitcoin_desc">
+                    <option value="0">j2store_no</option>
+                    <option value="1">j2store_yes</option>
+                </field>
+
+                <field type="spacer"/>
+
+                <field name="articleid" type="text" size="10" default=""
+                       label="J2STORE_PAYMENT_THANKS_MSG" description="J2STORE_PAYMENT_THANKS_MSG_DESC"/>
+                <field name="geozone_id" type="geozonelist" default=""
+                       label="J2STORE_GEOZONE" description="J2STORE_GEOZONE_DESC"
+                       addfieldpath="/administrator/components/com_j2store/models/fields"
+                />
+                <field type="spacer"/>
+                <field name="subscription_renewal_desc" type="textarea" cols="10" rows="5"
+                       default="" label="J2STORE_STRIPE_PAYMENT_SUBSCRIPTION_RENEWAL_DESCRIPTION_LABEL" description="J2STORE_STRIPE_PAYMENT_SUBSCRIPTION_RENEWAL_DESCRIPTION_DESC"/>
+                <field name="subscription_renewal_desc_info" type="customnotice" label="J2STORE_STRIPE_PAYMENT_SUBSCRIPTION_RENEWAL_DESCRIPTION_INFO"
+                       addfieldpath="/administrator/components/com_j2store/models/fields"/>
+                <field name="onselection" type="textarea" cols="10" rows="5"
+                       default="" label="j2store_on_selection_label" description="j2store_on_selection_desc"/>
+                <field name="onbeforepayment" type="textarea" cols="10" rows="5"
+                       default="" label="j2store_on_before_payment_label" description="j2store_on_before_payment_desc"/>
+                <field name="onafterpayment" type="textarea" cols="10" rows="5"
+                       default="" label="j2store_on_after_payment_label" description="j2store_on_after_payment_desc"/>
+                <field name="onerrorpayment" type="textarea" cols="10" rows="5"
+                       default="" label="j2store_on_error_payment_label" description="j2store_on_error_payment_desc"/>
+                <field name="oncancelpayment" type="textarea" cols="10" rows="5"
+                       default="" label="j2store_on_cancel_payment_label" description="j2store_on_cancel_payment_desc"/>
+
+                <field type="spacer"/>
+
+                <field name="button_text" type="text" size="50"
+                       default="J2STORE_PLACE_ORDER" label="j2store_button_text_label"
+                       description="j2store_button_text_desc"/>
+
+                <field name="card_update_button_text" type="text" size="50"
+                       default="J2STORE_PLACE_ORDER" label="j2store_card_update_button_text_label"
+                       description="j2store_card_update_button_text_desc"/>
+
+                <field name="debug" type="radio" default="0" class="btn-group"
+                       label="J2STORE_STRIPE_DEBUG" description="J2STORE_DEBUG_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+
+            </fieldset>
+        </fields>
+    </config>
+</extension>

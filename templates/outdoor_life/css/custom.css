@@ -1,0 +1,476 @@
+/* Version : 0.0.0 */
+
+/* Add your own custom css to this file. You may wish to use css !important calls to override css from the template css files.
+----------------------------------------------------------- */
+
+.alert_box {
+    background: #1EA0FB none repeat scroll 0 0;
+    color: #ffffff;
+    float: left;
+    font-size: 1.5em;
+    font-weight: 200;
+    line-height: 170%;
+    text-align: center;
+    width: 100%;
+}
+
+.package_blue .package_item_price {
+    background: #1ea0fb none repeat scroll 0 0 !important;
+}
+
+/* Controls width of Quantity Field During Checkout Process
+----------------------------------------------------------- */
+input[type="text"] {
+    min-width: 50px;
+}
+
+/* Adjusts placement of Radio Buttons and Checkboxes in HikaShop
+----------------------------------------------------------- */
+.hkradio-inline input[type="radio"], .hkcheckbox-inline input[type="checkbox"] {
+    margin: -14px 4px 0 -18px;
+    position: absolute;
+}
+
+/* Adjusts the height of input fields in Breezing Forms
+----------------------------------------------------------- */
+
+.bfQuickMode input[type="text"], .bfQuickMode textarea, .bfQuickMode select, .bfQuickMode .uneditable-input {
+    min-height: 42px;
+}
+
+/* Adjusts the size of Social Icons
+----------------------------------------------------------- */
+.social_icon {
+    color: #ffffff !important;
+    display: inline-block;
+    font-size: 25px;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 3px;
+    margin-top: 2px;
+    text-align: center;
+    transition: all 300ms ease-out 0s;
+    width: 28px;
+}
+
+.highlight1 {
+    background: #1EA0FB none repeat scroll 0 0 !important;
+    border: 0px solid #000000 !important;
+}
+
+.highlight2 {
+    background: #1EA0FB none repeat scroll 0 0 !important;
+    border: 10px solid #1EA0FB !important;
+}
+
+.highlight3 {
+    background: #1EA0FB none repeat scroll 0 0 !important;
+    border: 0px solid #000000 !important;
+}
+
+/*Removes Continue Shopping from J2Store Cart*/
+.cart-continue-shopping-button {
+    display: none;
+}
+.cart-update-button {
+    display: none;
+}
+
+#s5_top_row3_wrap {
+    background-color: #3cbc40;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+/* Hide J2 Subscription Cancel Button 2.1
+----------------------------------------------------------- */
+.btn-warning {
+    background-color: #faa732 !important;
+    background-image: linear-gradient(to bottom, #fbb450, #f89406) !important;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
+    color: #fff !important;
+    display: none !important;
+}
+
+/* Hide Modal (Subscription Link)
+----------------------------------------------------------- */
+.modal {
+    display: none !important;
+}
+
+#s5_pos_custom_2 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 80%;
+}
+
+.video_text_large {
+    line-height: 100%;
+    text-transform: uppercase;
+}
+
+/* Adjusts the padding/placement of the main navigational links
+----------------------------------------------------------- */
+
+#s5_nav li:first-child {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 20px;
+}
+
+#s5_nav li {
+    padding-top: 20px;
+    transition: background 350ms ease-in-out 0s !important;
+}
+
+.module_round_box.highlight1 {
+    color: #ffffff;
+    padding: 0;
+}
+
+#s5_footer_area1 {
+    background: #4e6887 none repeat scroll 0 0;
+    color: #ffffff;
+    font-size: 0.9em;
+    padding: 40px 5%;
+}
+
+.module_round_box_outer {
+    margin-bottom: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#s5_above_body_inner {
+    margin-left: -10px;
+    margin-right: 0;
+    padding-bottom: 30px;
+}
+
+/* HIDE MY PROFILE LABEL
+----------------------------------------------------------- */
+.j2store-myprofile h3 {
+    display: none !important;
+}
+
+/* 20201-10-20
+----------------------------------------------------------- */
+.video_text .readon{
+  margin-left:10px !important;
+}
+/******************************/
+.dl-horizontal dd, .dl-horizontal dt{
+    float:left !important;
+    display: block !important;
+  	padding:5px 0;
+}
+
+
+#j2store_type, .form-horizontal .row-fluid .inputbox, .form-horizontal .row-fluid select {
+    width: 100% !important;
+}
+    
+/* @media (min-width: 767px) {
+    #j2store_type, .form-horizontal .row-fluid .inputbox, .form-horizontal .row-fluid select {
+        width: 50% !important;
+    }
+        
+} */
+.icon-save, .icon-apply{
+    margin-right:5px;
+}
+.cart-estimator-discount-block .coupon input{
+    float:left;
+    margin-right: 10px;
+}
+.checkout-content .row-fluid .inputbox, .checkout-content .row-fluid select {
+    width: 100% !important;
+}
+#akeeba-renderjoomla input[type=radio][name=billing_address], #akeeba-renderjoomla input[type=radio][name=billing_address]{
+    clear:both;
+    float:left;
+}
+#akeeba-renderjoomla label[for=billing-address-existing],#akeeba-renderjoomla label[for=billing-address-new]{
+    float:left;
+    padding:15px;
+    margin-top:4px;
+} 
+#billing-new{
+    clear: both;
+}
+
+#akeeba-renderjoomla input[type=radio][name=shipping_address], #akeeba-renderjoomla input[type=radio][name=shipping_address]{
+    clear:both;
+    float:left;
+}
+#akeeba-renderjoomla label[for=shipping-address-existing],#akeeba-renderjoomla label[for=shipping-address-new]{
+    float:left;
+    padding:15px;
+    margin-top:4px;
+} 
+#shipping-new{
+    clear: both;
+}
+#s5_pos_custom_4_wrap .ion-ios-telephone-outline{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+#s5_pos_custom_4_wrap .ion-ios-telephone-outline::before{
+    color: #1EA0FB;
+    font-size: xx-large;
+    margin-right:5px;
+}
+
+#s5_bottom_menu_wrap a, #s5_bottom_menu_wrap .current a{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    border-radius: 5px;
+    float:left;
+}
+a.social_icon:hover{
+    opacity: 0.7;
+}
+
+#s5_login_custom_4_wrap a.social_icon, #s5_login_custom_4_wrap .current a.social_icon{
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    float:left;
+    border-radius: 5px;
+}
+#s5_login_custom_4_wrap #s5_pos_custom_4_wrap .moduletable{
+    clear:both;
+}
+#s5_login_custom_4_wrap{
+    margin-right:0px;
+}
+
+#s5_menu_inner{
+    float:left;
+}
+#s5_lr_tab1{
+    display: none !important;
+}
+
+/* @media screen and (max-width: 900px){
+
+    #s5_login_custom_4_wrap{
+        display: none !important;
+    }
+} */
+#s5_menu_inner{
+    width: 100% !important;
+}
+#s5_menu_wrap_inner{
+    padding:15px 0px !important;
+}
+
+@media screen and (max-width: 883px){
+    #s5_header{
+        display: none;
+    }
+    /* #s5_body_padding #s5_logo_wrap_outer{
+        display: none !important;
+    } */
+}
+@media screen and (max-width: 1280px) and (min-width:1100px){
+    #s5_logo_wrap{
+        width: 330px !important;
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+}
+@media screen and (max-width: 1400px) and (min-width:1280px){
+    #s5_logo_wrap{
+        width: 400px !important;
+        padding-left:40px;
+        padding-right:40px;
+    }
+
+}
+@media screen and (max-width: 1280px){
+    #s5_logo_wrap{
+        width: 330px !important;
+        padding-left:25px;
+        padding-right:25px;
+    }
+    #s5_nav li .s5_level1_span1{
+        padding:8px !important
+    }
+}
+@media screen and (max-width: 1024px){
+    /* #s5_logo_wrap{
+        width: 200px !important;
+        padding-left:0px;
+        padding-right:0px;
+    } */
+    #s5_nav li .s5_level1_span1{
+        padding:5px !important
+    }
+}
+@media screen and (max-width: 1024px){
+    #s5_logo_wrap{
+        width: 300px !important;
+        padding-left:0px;
+        padding-right:0px;
+    }
+}
+@media screen and (max-width: 900px){
+    #s5_logo_wrap{
+        width: 250px !important;
+        padding-left:0px;
+        padding-right:0px;
+    }
+}
+@media screen and (max-width: 1024px) and (min-width:883px){
+    #s5_logo_wrap_outer{
+        padding: 0px;
+    }
+    #s5_logo_wrap_outer img{
+        display: none;
+    }
+}
+@media screen and (max-width: 1024px){
+    #s5_menu_wrap_inner{
+        padding-top: 15px !important;
+    }
+    /* #s5_logo_wrap{
+        width: 330px !important;
+        padding-left:0px;
+        padding-right:0px;
+    } */
+}
+/* #s5_nav{
+    left:0px !important;
+    justify-content: center;
+    display: flex;
+    width: 100% !important;
+} */
+@media screen and (min-width: 1024px){
+    #s5_pos_custom_1_2_wrap #s5_pos_custom_2_wrap{
+        top:60% !important;
+    }
+}
+
+.blog .items-leading div[itemprop="blogPost"]
+{
+    margin-bottom: 5%;
+    padding: 5% 5%;
+}
+.blog .items-leading div[itemprop="blogPost"]:nth-last-child(odd){
+    border-bottom: 1px dashed grey;
+    background:white;
+    border-top: 1px dashed grey;
+    }
+.blog .items-leading div[itemprop="blogPost"]:nth-last-child(even){
+    background:#eee;
+}
+
+.j2store-product .j2store-addtocart-form .options .label_field{
+    float: left;
+}
+.j2store-product .j2store-addtocart-form .options .option select{
+    background-color: #0563af;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    padding-right: 40px;
+    margin:0px;
+}
+.j2store-product .j2store-addtocart-form .options{
+    margin-top:10px;
+}
+.j2store-product .j2store-addtocart-form .options .option{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: max-content;
+}
+.j2store-product .j2store-addtocart-form .options .option select option{
+    text-align: left;
+    padding: 0px;
+}
+.j2store-product .j2store-addtocart-form .div_select{
+    /* width: 155px; */
+    margin-left:5px;
+    display: none;
+}
+.j2store-product .j2store-addtocart-form .quantity_div{
+    align-items:center;
+    margin-left: 10px;
+    display: flex;
+}
+.j2store-product .j2store-addtocart-form .quantity_box{
+    width: 40px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    background: rgb(0,88,170,0.7);
+    color:white;
+    border-radius: 0px;
+    text-align: center;
+}
+.btn_inc:focus,.btn_dec:focus,.btn_inc:hover,.btn_dec:hover{
+    background: rgb(0,88,170,0.3);
+}
+.btn_inc,.btn_dec{
+    border-radius: 0px;
+    margin:0px;
+    width: 35px !important;
+    color:white;
+    background: rgb(0,88,170,0.7);
+}
+.quantity_box::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }    
+
+.j2store-product .j2store-addtocart-form .div_select::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    right: 0px;
+    width: 40px;
+    height: 50px;
+    /* float: right; */
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+  .j2store-product .j2store-addtocart-form .div_select:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .j2store-product .j2store-addtocart-form .options .option select option {
+    padding: 30px;
+  }
+  .j2store-add-to-cart input[type=submit]{
+      display: block;
+      margin:auto;
+      width:70%;
+      border-radius: 20px;
+  }
+#address-tab .span12{
+    width: 100%;
+}
+
+.module_round_box .s5_module_box_1 .large_picture .large_picture_text{
+    position: relative;
+    -webkit-transform: none;
+}

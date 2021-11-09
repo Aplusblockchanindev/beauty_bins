@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>Subscription Products</name>
+    <version>2.0.45</version>
+    <creationDate>30-09-2020</creationDate>
+    <author>Ashlin</author>
+    <authorEmail>supports@j2store.org</authorEmail>
+    <authorUrl>http://www.j2store.org</authorUrl>
+    <copyright>2016 Flycart Technologies LLP</copyright>
+    <license>GNU General Public License v3 or later</license>
+    <description>This app allows to create subscription product type for J2Store.</description>
+    <scriptfile>script.app_subscriptionproduct.php</scriptfile>
+    <files>
+        <filename plugin="app_subscriptionproduct">app_subscriptionproduct.php</filename>
+        <folder>app_subscriptionproduct</folder>
+        <folder>images</folder>
+        <filename>index.html</filename>
+    </files>
+    <!-- Media files -->
+    <media destination="plg_j2store_app_subscriptionproduct" folder="media/plg_j2store_app_subscriptionproduct">
+        <folder>css</folder>
+        <folder>js</folder>
+        <filename>index.html</filename>
+    </media>
+    <languages>
+        <language tag="en-GB">languages/en-GB.plg_j2store_app_subscriptionproduct.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="j2store_basic_settings">
+                <field name="subscriptionproduct_note" type="customnotice"
+                       label="j2store_app_subscriptionproduct_custom_note"
+                       addfieldpath="/administrator/components/com_j2store/models/fields"
+                />
+                <field name="enable_cron_log" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_CRON_SETTINGS_ENABLE_LOG" description="J2STORE_SUBSCRIPTIONAPP_CRON_SETTINGS_ENABLE_LOG_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="cronurl" type="cronurl" label="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_CRON_URL_LABEL"
+                       description="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_CRON_URL_DESC"
+                       addfieldpath="/plugins/j2store/app_subscriptionproduct/app_subscriptionproduct/models/fields" />
+                <field name="notify_expire" type="text" size="50" default="" label="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_NOTIFY_EXPIRE" description="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_NOTIFY_EXPIRE_DESC"/>
+                <field name="bcc_with_customer_emails" type="text" size="50" default="" label="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_BCC_EMAILS_FOR_ALL_CUSTOMERS_EMAIL" description="PLG_SYSTEM_J2STORESUBSCRIPTIONEXPIRYCONTROL_BCC_EMAILS_FOR_ALL_CUSTOMERS_EMAIL_DESC"/>
+                <field name="payment_methods" type="subscriptionpaymentmethods" label="J2STORESUBSCRIPTION_PAYMENT_METHODS_LABEL"
+                       description="J2STORESUBSCRIPTION_PAYMENT_METHODS_DESC" multiple="true"
+                       addfieldpath="/plugins/j2store/app_subscriptionproduct/app_subscriptionproduct/models/fields" />
+                <field name="allow_card_update" class="btn-group" type="radio" default="0"
+                       label="J2STORE_SUBSCRIPTIONAPP_ALLOW_CARD_UPDATE_FOR_SUPPORTED_PAYMENTS" description="J2STORE_SUBSCRIPTIONAPP_ALLOW_CARD_UPDATE_FOR_SUPPORTED_PAYMENTS_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+            </fieldset>
+            <fieldset name="displaysettings" label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS">
+                <field name="show_duration" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_DURATION" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_DURATION_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="show_recurring_total_cart" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_TOTAL_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_TOTAL_IN_CART_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="show_non_recurring_total_cart" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_NON_RECURRING_TOTAL_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_NON_RECURRING_TOTAL_IN_CART_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="show_recurring_amount_in_cart" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_AMOUNT_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_AMOUNT_IN_CART_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="show_recurring_discount_in_cart" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_DISCOUNT_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RECURRING_DISCOUNT_IN_CART_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="show_next_renewal_cart" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_NEXT_RENEWAL_DATE_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_NEXT_RENEWAL_DATE_IN_CART_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="date_format_next_renewal_cart" type="text" size="40" default="Y-m-d"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_DATE_FORMAT_RENEWAL_DATE_IN_CART" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_DATE_FORMAT_RENEWAL_DATE_IN_CART_DESC" />
+                <field name="show_renew_button" class="btn-group" type="radio" default="0"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RENEW_BUTTON_IN_SUBSCRIPTION" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_SHOW_RENEW_BUTTON_IN_SUBSCRIPTION_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+            </fieldset>
+            <fieldset name="renewalsettings" label="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS">
+                <field name="renewal_discount_percent" type="text" size="50" default="" label="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_DISCOUNT_PERCENT" description="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_DISCOUNT_PERCENT_DESC"/>
+                <field name="renewal_completed_order_email" class="btn-group" type="radio" default="1"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_COMPLETED_ORDER_EMAIL_NOTIFICATION" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_COMPLETED_ORDER_EMAIL_NOTIFICATION_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="renewal_notify_email" class="btn-group" type="radio" default="0"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_EMAIL_NOTIFICATION" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_EMAIL_NOTIFICATION_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="renewal_notify_email_on" type="text" size="50" default="" label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_EMAIL_NOTIFICATION_ON" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_RENEWAL_EMAIL_NOTIFICATION_ON_DESC"/>
+                <field name="trial_renewal_notify_email" class="btn-group" type="radio" default="0"
+                       label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_TRIAL_RENEWAL_EMAIL_NOTIFICATION" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_TRIAL_RENEWAL_EMAIL_NOTIFICATION_DESC">
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+                <field name="trial_renewal_notify_email_on" type="text" size="50" default="" label="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_TRIAL_RENEWAL_EMAIL_NOTIFICATION_ON" description="J2STORE_SUBSCRIPTIONAPP_DISPLAY_SETTINGS_TRIAL_RENEWAL_EMAIL_NOTIFICATION_ON_DESC"/>
+                <field name="max_renewal_retry" type="text" size="50" default="5" label="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_MAX_RENEWAL_RETRY" description="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_MAX_RENEWAL_RETRY_DESC"/>
+                <field name="renewal_retry_interval_period_units" type="text" size="50" default="1" label="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_UNITS" description="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_UNITS_DESC"/>
+                <field name="renewal_retry_interval_period" type="list" default="hour"
+                       label="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD" description="J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_DESC">
+                    <option value="hour">J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_HOURS</option>
+                    <option value="day">J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_DAYS</option>
+                    <option value="week">J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_WEEKS</option>
+                    <option value="month">J2STORE_SUBSCRIPTIONAPP_RENEWAL_SETTINGS_RENEWAL_RETRY_INTERVAL_PERIOD_MONTHS</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

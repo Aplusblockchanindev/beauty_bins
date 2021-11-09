@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.6.1" method="upgrade">
+	<name>Package inGallery</name>
+	<packagename>ingallery</packagename>
+	<author>Oleg Micriucov (ZyX)</author>
+	<creationDate>2017</creationDate>
+	<authorEmail>info@allforjoomla.com</authorEmail>
+	<authorUrl>https://allforjoomla.com</authorUrl>
+	<copyright>Copyright (c) 2020 Oleg Micriucov</copyright>
+	<license>http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL</license>
+	<version>1.217.7</version>
+	<packager>AllForJoomla.com</packager>
+	<packagerurl>https://allforjoomla.com</packagerurl>
+	<description><![CDATA[inGallery installation package]]></description>
+	<files folder="packages">
+        <file type="component" id="com_ingallery">com_ingallery.zip</file>
+		<file type="plugin" group="system" id="ingallery">plg_ingallery.zip</file>
+	</files>
+    
+    <scriptfile>script.ingallery.php</scriptfile>
+    
+    <updateservers>
+        <server type="extension" priority="1" name="InGallery">http://update.allforjoomla.com/premium/ingallery-package.xml</server>
+    </updateservers>
+</extension>
