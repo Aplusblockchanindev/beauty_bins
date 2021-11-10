@@ -26,3 +26,96 @@ Processing mail: To notify renewal subscriptions	 [2021-11-09 14:26:16]
 Processing subscription renewal	 [2021-11-09 14:26:16]
 
 		Initiating renewal process for the subscription: 6	 [2021-11-09 14:26:16]
+-------------------------------------------------------------------------------------------
+
+Cron initiated	 [2021-11-10 16:00:21]
+
+Processing expiry control: Checking for changing Future to Active subscriptions	 [2021-11-10 16:00:21]
+
+			- Processed expiry control: Future to Active subscriptions: 0	 [2021-11-10 16:00:21]
+
+Processing expiry control: Checking for changing Active to Expire subscriptions	 [2021-11-10 16:00:21]
+
+			- Processed expiry control: Active to Expire subscriptions: 0	 [2021-11-10 16:00:21]
+
+Processing expiry control: Checking for changing Cancel to Expire subscriptions	 [2021-11-10 16:00:21]
+
+			- Processed expiry control: Cancel to Expire subscriptions: 0	 [2021-11-10 16:00:21]
+
+Processing mail: For notify first renewal from trial subscriptions	 [2021-11-10 16:00:21]
+
+			- Total Processed mail: To notify first renewal from trial subscriptions: 0	 [2021-11-10 16:00:21]
+
+Processing mail: To notify renewal subscriptions	 [2021-11-10 16:00:21]
+
+			- Total Processed mail: To notify renewal subscriptions: 0	 [2021-11-10 16:00:21]
+
+Processing subscription renewal	 [2021-11-10 16:00:21]
+
+		Initiating renewal process for the subscription: 1	 [2021-11-10 16:00:21]
+-------------------------------------------------------------------------------------------
+
+Cron initiated	 [2021-11-10 16:00:38]
+
+Processing expiry control: Checking for changing Future to Active subscriptions	 [2021-11-10 16:00:38]
+
+			- Processed expiry control: Future to Active subscriptions: 0	 [2021-11-10 16:00:38]
+
+Processing expiry control: Checking for changing Active to Expire subscriptions	 [2021-11-10 16:00:38]
+
+			- Processed expiry control: Active to Expire subscriptions: 0	 [2021-11-10 16:00:38]
+
+Processing expiry control: Checking for changing Cancel to Expire subscriptions	 [2021-11-10 16:00:38]
+
+			- Processed expiry control: Cancel to Expire subscriptions: 0	 [2021-11-10 16:00:38]
+
+Processing mail: For notify first renewal from trial subscriptions	 [2021-11-10 16:00:38]
+
+			- Total Processed mail: To notify first renewal from trial subscriptions: 0	 [2021-11-10 16:00:38]
+
+Processing mail: To notify renewal subscriptions	 [2021-11-10 16:00:38]
+
+			- Total Processed mail: To notify renewal subscriptions: 0	 [2021-11-10 16:00:38]
+
+Processing subscription renewal	 [2021-11-10 16:00:38]
+
+		Initiating renewal process for the subscription: 7	 [2021-11-10 16:00:38]
+
+		Renewal process completed for the subscription: 7	 [2021-11-10 16:00:38]
+
+		Initiating renewal process for the subscription: 8	 [2021-11-10 16:00:38]
+-------------------------------------------------------------------------------------------
+
+Cron initiated	 [2021-11-10 16:00:51]
+
+Processing expiry control: Checking for changing Future to Active subscriptions	 [2021-11-10 16:00:51]
+
+			- Processed expiry control: Future to Active subscriptions: 0	 [2021-11-10 16:00:51]
+
+Processing expiry control: Checking for changing Active to Expire subscriptions	 [2021-11-10 16:00:51]
+
+			- Processed expiry control: Active to Expire subscriptions: 0	 [2021-11-10 16:00:51]
+
+Processing expiry control: Checking for changing Cancel to Expire subscriptions	 [2021-11-10 16:00:51]
+
+			- Processed expiry control: Cancel to Expire subscriptions: 0	 [2021-11-10 16:00:51]
+
+Processing mail: For notify first renewal from trial subscriptions	 [2021-11-10 16:00:51]
+
+			- Total Processed mail: To notify first renewal from trial subscriptions: 0	 [2021-11-10 16:00:51]
+
+Processing mail: To notify renewal subscriptions	 [2021-11-10 16:00:51]
+
+			- Total Processed mail: To notify renewal subscriptions: 0	 [2021-11-10 16:00:51]
+
+Processing subscription renewal	 [2021-11-10 16:00:51]
+
+		Initiating renewal process for the subscription: 9	 [2021-11-10 16:00:51]
+
+		Renewal process completed for the subscription: 9	 [2021-11-10 16:00:51]
+
+		Initiating renewal process for the subscription: 10	 [2021-11-10 16:00:51]
+
+		Renewal process completed for the subscription: 10	 [2021-11-10 16:00:51]
+
+		Initiating renewal process for the subscription: 11	 [2021-11-10 16:00:51]

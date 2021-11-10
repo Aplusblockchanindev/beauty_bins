@@ -63,9 +63,9 @@
 			class="validate-phone"
 			filter="number"
 			message="COM_USERS_PROFILE_PHONE_MESSAGE"
-			size="10"
+			size="12"
 			validate="tel"
-			pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+			pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 		/>
 
 		<field

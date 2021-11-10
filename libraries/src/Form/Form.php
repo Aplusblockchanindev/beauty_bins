@@ -2151,7 +2151,8 @@ class Form
 			// If the object could not be loaded return an error message.
 			if ($rule === false)
 			{
-				throw new \UnexpectedValueException(sprintf('%s::validateField() rule `%s` missing.', get_class($this), $type));
+				// throw new \UnexpectedValueException(sprintf('%s::validateField() rule `%s` missing.', get_class($this), $type));
+				throw new \UnexpectedValueException(sprintf('%s::validateField() rule `%s %s` missing.', get_class($this), $element['plan'], $value));
 			}
 
 			// Run the field validation rule test.

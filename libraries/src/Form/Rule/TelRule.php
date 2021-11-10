@@ -55,8 +55,13 @@ class TelRule extends FormRule
 		 * @link http://blog.stevenlevithan.com/archives/validate-phone-number
 		 * @note that valid ITU-T and EPP must begin with +.
 		 */
+		//Edited by DC
+		$element['plan'] = "us";
+		//Edited by DC
+
 		$regexarray = array(
-			'NANP' => '/^(?:\+?1[-. ]?)?\(?([2-9][0-8][0-9])\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/',
+			// 'NANP' => '/^(?:\+?1[-. ]?)?\(?([2-9][0-8][0-9])\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/',
+			'NANP' => '/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/',
 			'ITU-T' => '/^\+(?:[0-9] ?){6,14}[0-9]$/',
 			'EPP' => '/^\+[0-9]{1,3}\.[0-9]{4,14}(?:x.+)?$/',
 		);
