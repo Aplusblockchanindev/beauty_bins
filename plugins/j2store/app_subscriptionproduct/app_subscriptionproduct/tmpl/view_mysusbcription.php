@@ -15,6 +15,14 @@ if($item){
     $subscriptionOrder = $this->vars->subscriptionOrder;
     $orderinfo = $subscriptionOrder->getOrderInformation();
 
+    //Edited by DC
+    $orderinfo->billing_phone_1 = convert_phone_number($orderinfo->billing_phone_1);
+    $orderinfo->billing_phone_2 = convert_phone_number($orderinfo->billing_phone_2);
+    $orderinfo->shipping_phone_1 = convert_phone_number($orderinfo->shipping_phone_1);
+    $orderinfo->shipping_phone_2 = convert_phone_number($orderinfo->shipping_phone_2);
+
+
+
     $subscriptionHistory = $this->vars->subscriptionHistory;
     $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
 
@@ -338,3 +346,19 @@ if($item){
     </div>
     <?php
 } ?>
+
+<?php
+function convert_phone_number($phone_number)
+{
+	$ret_val = $phone_number;
+	if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+	{
+		$ret_val = substr_replace($ret_val, "-", 3, 0);
+		$ret_val = substr_replace($ret_val, "-", 7, 0);
+		return $ret_val;
+	}
+	// if(strpos($phone_number,"-"))
+
+	return $ret_val;
+}
+?>

@@ -87,19 +87,3 @@ JHTML::_('behavior.modal', 'a.modal');
 		</div>
 	</div>
 </div>
-<?php 
-
-function convert_phone_number($phone_number)
-{
-	$ret_val = $phone_number;
-	if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
-	{
-		$ret_val = substr_replace($ret_val, "-", 3, 0);
-		$ret_val = substr_replace($ret_val, "-", 7, 0);
-		return $ret_val;
-	}
-	// if(strpos($phone_number,"-"))
-
-	return $ret_val;
-}
-?>

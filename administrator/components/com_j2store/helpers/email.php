@@ -420,6 +420,14 @@ class J2Email {
 		$invoice_number = $order->getInvoiceNumber();
 		//now process tags
 		$orderinfo = $order->getOrderInformation();
+		
+		//Edited by DC
+		$orderinfo->billing_phone_1 = convert_phone_number($orderinfo->billing_phone_1);
+		$orderinfo->billing_phone_2 = convert_phone_number($orderinfo->billing_phone_2);
+		$orderinfo->shipping_phone_1 = convert_phone_number($orderinfo->shipping_phone_1);
+		$orderinfo->shipping_phone_2 = convert_phone_number($orderinfo->shipping_phone_2);
+
+
 		$shipping = $order->getOrderShippingRate();
 		$ordercoupon = $order->getOrderCoupons();
 		$status = F0FModel::getTmpInstance('Orderstatuses', 'J2StoreModel')->getItem($order->order_state_id);
@@ -999,4 +1007,17 @@ class J2Email {
 		$text = preg_replace('#\n *\n\s+#',"\n\n",$text);
 		return $text;
 	}
+}
+function convert_phone_number($phone_number)
+{
+	$ret_val = $phone_number;
+	if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+	{
+		$ret_val = substr_replace($ret_val, "-", 3, 0);
+		$ret_val = substr_replace($ret_val, "-", 7, 0);
+		return $ret_val;
+	}
+	// if(strpos($phone_number,"-"))
+
+	return $ret_val;
 }
