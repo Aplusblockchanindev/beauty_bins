@@ -33,6 +33,13 @@ if(typeof(j2storeURL) == 'undefined') {
 //make sure the ajax requests are not cached
 (function($) {
 	$(document).ready(function() {
+		//Edited by DC
+		$('#phone_1').usPhoneFormat({
+			format: 'xxx-xxx-xxxx',
+		});
+		$('#phone_2').usPhoneFormat({
+			format: 'xxx-xxx-xxxx',
+		});
 		$.ajaxSetup({
 			cache: false,
 			headers: {
@@ -119,6 +126,7 @@ $( document ).on( 'click', '.j2store_add_to_cart_button', function(e) {
 		e.preventDefault();
 		var form = $(this);
 		
+
 		//this will help detect if the form is submitted via ajax or normal submit.
 		//sometimes people will submit the form before the DOM loads
 		form.find('input[name=\'ajax\']').val(1);

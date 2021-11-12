@@ -83,12 +83,14 @@ if(empty($user->id)){
                     if($placeholder){
                         $field_options .= ' placeholder="'.$placeholder.'" ';
                     }
-			 		$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
+					// $field_options .= ' placeholder="'.$fieldName.'" ';
+					$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
 				}
 
 			?>
 		<?php endif;?>
 	  	<?php endforeach; ?>
+		  
 	 	<?php
 	 		 //check for unprocessed fields.
 	 		 //If the user forgot to add the
@@ -101,6 +103,7 @@ if(empty($user->id)){
 	  		endforeach;
 	   //now we have unprocessed fields. remove any other square brackets found.
 	  preg_match_all("^\[(.*?)\]^",$html,$removeFields, PREG_PATTERN_ORDER);
+
 	  foreach($removeFields[1] as $fieldName) {
 	  	$html = str_replace('['.$fieldName.']', '', $html);
 	  }

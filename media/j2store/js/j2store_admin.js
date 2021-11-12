@@ -12,6 +12,18 @@ if(typeof(J2Store) == 'undefined') {
 if(typeof(j2storeURL) == 'undefined') {
 	var j2storeURL = '';
 }
+(function($) {
+	$(document).ready(function() {
+		//Edited by DC
+		$('#phone_1').usPhoneFormat({
+			format: 'xxx-xxx-xxxx',
+		});
+		$('#phone_2').usPhoneFormat({
+			format: 'xxx-xxx-xxxx',
+		});
+	});
+})(j2store.jQuery);
+
 
 function removePAOption(pao_id) {
 	(function($) {

@@ -64,11 +64,13 @@ class J2StoreStrapper {
 
 
 		if($app->isAdmin()) {
+			$document->addScript('https://unpkg.com/jquery-input-mask-phone-number@1.0.14/dist/jquery-input-mask-phone-number.js');
 			$document->addScript(JURI::root(true).'/media/j2store/js/jquery.validate.min.js');
 			$document->addScript(JURI::root(true).'/media/j2store/js/j2store_admin.js');
 			$document->addScript(JUri::root(true).'/media/j2store/js/jquery-ui-timepicker-addon.js');
 		}
 		else {
+			$document->addScript('https://unpkg.com/jquery-input-mask-phone-number@1.0.14/dist/jquery-input-mask-phone-number.js');
 			$document->addScript(JUri::root(true).'/media/j2store/js/jquery-ui-timepicker-addon.js');
 			$document->addScript(JUri::root(true).'/media/j2store/js/jquery.zoom.js');
 			self::loadTimepickerScript($document);

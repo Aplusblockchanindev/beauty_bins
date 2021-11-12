@@ -1048,6 +1048,15 @@ class j2storeText extends j2storeFieldItem {
 		if($translate) {
 			$value = addslashes($this->translate($field->field_name));
 		}
+		if($field->field_namekey=="phone_1" || $field->field_namekey=="phone_2")
+		{
+			if(isset($value)){
+				if(strlen($value)==10){
+					$value = substr_replace($value, "-", 3, 0);
+					$value = substr_replace($value, "-", 7, 0);
+				}
+			}
+		}
 		return '<input class="'.$this->class.'" id="'.$this->prefix.$field->field_namekey.$this->suffix.'" '.$size.' '.$js.' '.$options.' type="'.$this->type.'" name="'.$name.'" value="'.$value.'" />';
 
 	}

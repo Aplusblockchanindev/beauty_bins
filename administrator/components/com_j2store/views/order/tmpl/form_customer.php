@@ -50,8 +50,10 @@ JHTML::_('behavior.modal', 'a.modal');
 							<?php echo $this->orderinfo->billing_city;?><br /> <?php echo $this->orderinfo->billing_zone_name ? JText::_($this->orderinfo->billing_zone_name).'<br />' : "";?>
 							<?php echo !empty($this->orderinfo->billing_zip) ? $this->orderinfo->billing_zip.'<br />': '';?>
 							<?php echo JText::_($this->orderinfo->billing_country_name)." <br/> ".JText::_('J2STORE_TELEPHONE').":";?>
-							<?php echo $this->orderinfo->billing_phone_1;
-							echo $this->orderinfo->billing_phone_2 ? '<br/> '.$this->orderinfo->billing_phone_2 : "<br/> ";
+							<?php 
+							// echo $this->orderinfo->billing_phone_1;
+							echo convert_phone_number($this->orderinfo->billing_phone_1);
+							echo $this->orderinfo->billing_phone_2 ? '<br/> '.convert_phone_number($this->orderinfo->billing_phone_2) : "<br/> ";
 							echo '<br/> ';
 							echo '<a href="mailto:'.$this->item->user_email.'">'.$this->item->user_email.'</a>';
 							echo '<br/> ';
@@ -72,8 +74,8 @@ JHTML::_('behavior.modal', 'a.modal');
 						echo $this->orderinfo->shipping_zip."<br/>";
 						echo JText::_($this->orderinfo->shipping_country_name)."<br/>";
 						echo JText::_('J2STORE_TELEPHONE') .': ';
-						echo $this->orderinfo->shipping_phone_1;
-						echo $this->orderinfo->shipping_phone_2 ? "<br/>".$this->orderinfo->shipping_phone_2 : "<br/> ";
+						echo convert_phone_number($this->orderinfo->shipping_phone_1);
+						echo $this->orderinfo->shipping_phone_2 ? "<br/>".convert_phone_number($this->orderinfo->shipping_phone_2) : "<br/> ";
 						echo '<br/> ';
 						echo $this->orderinfo->shipping_company ? JText::_('J2STORE_ADDRESS_COMPANY_NAME').':&nbsp;'.$this->orderinfo->shipping_company."</br>" : "";
 						echo $this->orderinfo->shipping_tax_number ? JText::_('J2STORE_ADDRESS_TAX_NUMBER').':&nbsp;'.$this->orderinfo->shipping_tax_number."</br>" : "";
@@ -85,3 +87,19 @@ JHTML::_('behavior.modal', 'a.modal');
 		</div>
 	</div>
 </div>
+<?php 
+
+function convert_phone_number($phone_number)
+{
+	$ret_val = $phone_number;
+	if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+	{
+		$ret_val = substr_replace($ret_val, "-", 3, 0);
+		$ret_val = substr_replace($ret_val, "-", 7, 0);
+		return $ret_val;
+	}
+	// if(strpos($phone_number,"-"))
+
+	return $ret_val;
+}
+?>

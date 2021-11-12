@@ -474,3 +474,13 @@ a.social_icon:hover{
     position: relative;
     -webkit-transform: none;
 }
+
+#bfQuickModeSection72173, #bfQuickModeSection53378, #bfQuickModeSection12767{
+    padding-right: 0px !important;
+}
+#bfQuickModeSection72173 .bfbs3-row{
+    margin-left: 0px !important;
+}
+.bfQuickMode .bfElemWrap{
+    padding:0 10px !important;
+}
