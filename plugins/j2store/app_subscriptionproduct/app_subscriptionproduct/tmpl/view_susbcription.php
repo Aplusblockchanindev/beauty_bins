@@ -310,8 +310,8 @@ if($item){
                                 <?php echo $orderinfo->billing_city;?><br /> <?php echo $orderinfo->billing_zone_name ? $orderinfo->billing_zone_name.'<br />' : "";?>
                                 <?php echo !empty($orderinfo->billing_zip) ? $orderinfo->billing_zip.'<br />': '';?>
                                 <?php echo $orderinfo->billing_country_name." <br/> ".JText::_('J2STORE_TELEPHONE').":";?>
-                                <?php echo $orderinfo->billing_phone_1;
-                                echo $orderinfo->billing_phone_2 ? '<br/> '.$orderinfo->billing_phone_2 : "<br/> ";
+                                <?php echo convert_phone_number($orderinfo->billing_phone_1);
+                                echo convert_phone_number($orderinfo->billing_phone_2) ? '<br/> '.convert_phone_number($orderinfo->billing_phone_2) : "<br/> ";
                                 echo '<br/> ';
                                 echo '<a href="mailto:'.$userDetails->get('email').'">'.$userDetails->get('email').'</a>';
                                 echo '<br/> ';
@@ -330,8 +330,8 @@ if($item){
                                     <?php echo $orderinfo->shipping_zone_name ? $orderinfo->shipping_zone_name.'<br />' : "";?>
                                     <?php echo !empty($orderinfo->shipping_zip) ? $orderinfo->shipping_zip.'<br />': '';?>
                                     <?php echo $orderinfo->shipping_country_name." <br/> ".JText::_('J2STORE_TELEPHONE').":";?>
-                                    <?php echo $orderinfo->shipping_phone_1;
-                                    echo $orderinfo->shipping_phone_2 ? '<br/> '.$orderinfo->shipping_phone_2 : "<br/> ";
+                                    <?php echo convert_phone_number($orderinfo->shipping_phone_1);
+                                    echo $orderinfo->shipping_phone_2 ? '<br/> '.convert_phone_number($orderinfo->shipping_phone_2) : "<br/> ";
                                     echo '<br/> ';
                                     echo $orderinfo->shipping_company ? JText::_('J2STORE_ADDRESS_COMPANY_NAME').':&nbsp;'.$orderinfo->shipping_company."</br>" : "";
                                     echo $orderinfo->shipping_tax_number ? JText::_('J2STORE_ADDRESS_TAX_NUMBER').':&nbsp;'.$orderinfo->shipping_tax_number."</br>" : "";
@@ -509,3 +509,20 @@ if($item){
     </div>
     <?php
 } ?>
+
+<?php
+function convert_phone_number($phone_number)
+{
+	$ret_val = $phone_number;
+	if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+	{
+		$ret_val = substr_replace($ret_val, "-", 3, 0);
+		$ret_val = substr_replace($ret_val, "-", 7, 0);
+		return $ret_val;
+	}
+	// if(strpos($phone_number,"-"))
+
+	return $ret_val;
+}
+
+?>
