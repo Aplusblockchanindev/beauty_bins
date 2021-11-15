@@ -516,14 +516,17 @@ function get_matching_variant(variants, selected) {
 function edit_quantity(type,product_id,id){
 	var quantity_box= "quantity-" + id;
 	var total_cnt = 0;
+	var status_val = 1;
 	(function($){
 		var quantity_val = $("#"+quantity_box).val();
 		total_cnt = $('#qty_selector_'+id).children("option").length-1;
 		console.log(type);
 		console.log("current_val: " + quantity_val);
+
 		if(type=="dec"){
 			if(quantity_val==0)
 			{
+				status_val = 0;
 				return;
 			}
 			quantity_val--;
@@ -532,6 +535,7 @@ function edit_quantity(type,product_id,id){
 		if(type=="inc"){
 			if(quantity_val==total_cnt)
 			{
+				status_val = 0;
 				return;
 			} 
 			quantity_val++;
@@ -542,15 +546,26 @@ function edit_quantity(type,product_id,id){
 			if(quantity_val>total_cnt)
 			{
 				quantity_val = total_cnt;
+				$("#"+quantity_box).val(total_cnt);
+				// alert("Max:"+total_cnt);
+				status_val = 0;
+				return;
 			}
 			if(quantity_val<0){
+				$("#"+quantity_box).val(0);
 				quantity_val = 0;
+				// alert("Min Count : 0");
+				status_val = 0;
+				return;
 			}
 		}
 		$('#qty_selector_'+id+' option:eq('+ quantity_val +')').attr('selected', 'selected');
 		// alert($('#qty_selector_'+id).val());
 	
-		doAjaxPrice(product_id,"#option-"+id);
+		if(status_val == 1)
+		{
+			doAjaxPrice(product_id,"#option-"+id);
+		}
 	})(j2store.jQuery);
 }
 

@@ -36,7 +36,7 @@ $ajax_url = JRoute::_('index.php',false);
 		  <!---- Edited by DC-------------->  	
 			<div class="quantity_div">
 				<input type="button" class="btn_dec" onclick="edit_quantity('dec',<?php echo $product_id; ?>,<?php echo $option['productoption_id'];  ?>);" value="-" />
-				<input type="text" readonly="readonly" value="0" id="quantity-<?php echo $option['productoption_id'];  ?>" class="quantity_box" />
+				<input type="number" value="0" id="quantity-<?php echo $option['productoption_id'];  ?>" onchange="edit_quantity('edit',<?php echo $product_id; ?>,<?php echo $option['productoption_id'];  ?>);" class="quantity_box" />
 				<input type="button" class="btn_inc" onclick="edit_quantity('inc',<?php echo $product_id; ?>,<?php echo $option['productoption_id'];  ?>);" value="+" />
 			</div>
 		
