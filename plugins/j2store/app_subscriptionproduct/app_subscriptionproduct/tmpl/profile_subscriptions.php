@@ -8,7 +8,7 @@ $j2_params = J2Store::config();
 $app = JFactory::getApplication();
 $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
 ?>
-<div class="tab-pane" id="subscription-tab">
+<div class="tab-pane active" id="subscription-tab">
     <div class="j2store_subscriptions_con">
         <div class="j2store_susbcription_message hide">
         </div>
@@ -107,7 +107,7 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 }
                                 ?>
                             </td>
-                            <td data-app_id="<?php echo $vars->id; ?>">
+                            <td data-app_id="<?php echo $vars->id; ?>" style="display:flex;">
                                 <?php
                                 $support_trial = $vars->model->hasTrialSupport($item->payment_method);
                                 $display_card_update = $vars->model->isDisplayCardUpdate($item);
@@ -121,14 +121,16 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 }
                                 if($item->status == 'active' || $item->status == 'in_trial'){
                                     ?>
-                                    <button type="button" class="btn btn-warning" onclick="cancelSubscription('<?php echo $item->j2store_subscription_id; ?>')"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_CANCEL'); ?></button>
+                                    <!-- <button type="button" class="btn btn-warning" onclick="cancelSubscription('<?php echo $item->j2store_subscription_id; ?>')"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_CANCEL'); ?></button> -->
+                                    <button type="button" class="btn btn-warning" onclick="pauseSubscription('<?php echo $item->j2store_subscription_id; ?>')">Pause</button>
                                     <?php
                                 }
                                 $showRenewalBtn = $vars->model->hasRenew($item);
-                                if($showRenewalBtn){
+                                if($showRenewalBtn)
+                                {
                                     ?>
                                     <?php $link = JRoute::_('index.php?option=com_j2store&view=myprofile&profileTask=renew&sid='.$item->j2store_subscription_id); ?>
-                                    <a class="btn btn-primary" href="<?php echo $link;?>"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_RENEW'); ?></a>
+                                    <a class="btn btn-primary" style="padding-top:14px;" href="<?php echo $link;?>"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_RENEW'); ?></a>
                                 <?php
                                 }
                                 // To load additional action through plugin
@@ -166,6 +168,50 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
             j2store.jQuery = jQuery.noConflict();
         }
 
+        function doPauseSubscription(id)
+        {
+            (function($){
+                var msg_pause = $("#txt_message_pause").val();
+                if(msg_pause=="")
+                {
+                    alert("Please type your reasons");
+                    return;
+                }
+                $.ajax({
+                    type : 'post',
+                    url :  '<?php echo JUri::root(); ?>index.php',
+                    data : {
+                        'option': 'com_j2store',
+                        'view': 'apps',
+                        'task': 'view',
+                        'appTask': 'pauseSubscription',
+                        'id': '<?php echo $vars->id; ?>',
+                        'sid': id,
+                        'msg_pause':msg_pause
+                    },
+                    dataType : 'json',
+                    success : function(data) {
+                        alert(data.message);
+                        if(data.status == '1'){
+                            $('.j2store_susbcription_message').html(data.message);
+                            $('.j2store_susbcription_message').show();
+                        } else {
+                            $('.j2store_susbcription_message').html(data.message);
+                            $('.j2store_susbcription_message').show();
+                        }
+                    }
+                });
+
+            })(j2store.jQuery);
+        }
+
+        function pauseSubscription(id){
+            (function($) {
+                if($("#subscription-tab").children("#pause_div").length==0){
+                    $("#subscription-tab").prepend("<div id='pause_div'><textarea id='txt_message_pause' style='display:block;width:50%;' placeholder='Type your reason here.'></textarea><button class='btn primary' onclick='doPauseSubscription("+ id +")'>Request to Pause</button></div>");
+                }
+            })(j2store.jQuery);
+        }
         function cancelSubscription(id){
             (function($) {
                 $.ajax({

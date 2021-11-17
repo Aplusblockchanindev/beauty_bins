@@ -2604,6 +2604,34 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
         }
     }
 
+    /**
+     * Pause Subscription
+     * */
+    public function pauseSubscription($sid, $msg, $frontend = 1){
+        $subscription = F0FTable::getInstance('Subscription', 'J2StoreTable')->getClone();
+        $subscription->load(array('j2store_subscription_id' => $sid));
+        if($subscription->j2store_subscription_id && in_array($subscription->status, array('active', 'in_trial'))){
+            $j2StorePlugin = \J2Store::plugin();
+            $subscriptionMeta = $this->getAllSubscriptionMetaData($sid);
+            $user = JFactory::getUser();
+            $user_id = $user->get('id');
+            if($subscription->user_id != $user_id){
+                return -1;
+            }
+            
+            $to = 'dcmanagertech1121@gmail.com';
+            $subject = 'You received an request to pause the subscription';
+            $message = $msg;
+            $headers = 'From: '.$user->get('email') . "\r\n" .
+                'Reply-To: '. $user->get('email') . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            if(mail($to, $subject, $message, $headers)){
+                return true;
+            }
+            return false;
+        }
+    }
+
     public function updateRetryRenewalProcess($sid){
         $subscription = F0FTable::getInstance('Subscription', 'J2StoreTable')->getClone();
         $subscription->load(array('j2store_subscription_id' => $sid));

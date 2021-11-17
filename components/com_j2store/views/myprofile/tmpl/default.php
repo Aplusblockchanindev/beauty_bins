@@ -65,7 +65,7 @@ $page_heading_text = $page_heading->get('page_heading','');
 		 <div class="tabbable tabs">
          	   <ul class="nav nav-tabs">
 				<?php echo $plugin_title_html; ?>
-                  <li class="active">
+                  <li class="">
 	                  	<a href="#orders-tab" data-toggle="tab"><i class="fa fa-th-large"></i>
 	                  		 <?php echo JText::_('J2STORE_MYPROFILE_ORDERS'); ?>
 	                  	</a>
@@ -88,7 +88,7 @@ $page_heading_text = $page_heading->get('page_heading','');
                   <?php endif; ?>
             	</ul>
 				<div class="tab-content">
-	                  <div class="tab-pane active" id="orders-tab">
+	                  <div class="tab-pane" id="orders-tab">
 						  <?php echo J2Store::modules()->loadposition('j2store-myprofile-order'); ?>
 		                	<div class="table-responsive">
 								<?php echo $this->loadTemplate('orders');?>

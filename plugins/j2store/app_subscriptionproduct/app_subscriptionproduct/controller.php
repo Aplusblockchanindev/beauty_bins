@@ -30,6 +30,7 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             'manageSubscription',
             'viewSubscription',
             'cancelSubscription',
+            'pauseSubscription',
             'changeSubscriptionStatus',
             'updateSubscription',
             'addSubscriptionHistory',
@@ -521,6 +522,31 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             } else {
                 $returnResult['status'] = 0;
                 $returnResult['message'] = '<p class="text-warning">'.JText::_('J2STORE_SUBSCRIPTIONAPP_SUBSCRIPTION_CANCELED_FALIED').'</p>';
+            }
+
+            echo json_encode($returnResult);exit;
+        }
+    }
+
+    /**
+     * Pause the subscription - request email
+     * */
+    public function pauseSubscription(){
+        $app = JFactory::getApplication();
+        $id = $app->input->getInt('sid');
+        $msg_pause = $app->input->get("msg_pause");
+        
+        if($id){
+            F0FModel::addIncludePath(JPATH_SITE.'/plugins/j2store/'.$this->_element.'/'.$this->_element.'/models');
+            $model = F0FModel::getTmpInstance('AppSubscriptionProducts', 'J2StoreModel');
+            $result = $model->pauseSubscription($id,$msg_pause);
+
+            if($result){
+                $returnResult['status'] = 1;
+                $returnResult['message'] = '<p class="text-success">Pause request has been sent successfully!</p>';
+            } else {
+                $returnResult['status'] = 0;
+                $returnResult['message'] = '<p class="text-warning">Unable to send request to the Admin</p>';
             }
 
             echo json_encode($returnResult);exit;

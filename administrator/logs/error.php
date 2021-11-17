@@ -28,3 +28,15 @@
 2021-11-04T14:41:33+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
 2021-11-04T14:41:52+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
 2021-11-04T14:42:01+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T16:03:03+00:00	INFO ::1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T16:04:19+00:00	INFO ::1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T18:08:59+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T18:10:03+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T18:10:10+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T18:10:27+00:00	INFO 127.0.0.1	joomlacanceled	
+2021-11-15T18:10:34+00:00	INFO 127.0.0.1	joomlacanceled	
+2021-11-15T18:10:53+00:00	INFO 127.0.0.1	joomlacanceled	
+2021-11-15T18:11:05+00:00	INFO 127.0.0.1	joomlacanceled	
+2021-11-15T18:11:53+00:00	INFO 127.0.0.1	joomlafailure	Username and password do not match or you do not have an account yet.
+2021-11-15T18:14:38+00:00	INFO 127.0.0.1	joomlacanceled	
+2021-11-15T18:14:51+00:00	INFO 127.0.0.1	joomlacanceled	

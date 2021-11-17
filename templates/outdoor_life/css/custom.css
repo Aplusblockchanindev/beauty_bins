@@ -91,7 +91,7 @@ input[type="text"] {
     background-image: linear-gradient(to bottom, #fbb450, #f89406) !important;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
     color: #fff !important;
-    display: none !important;
+    /* display: none !important; */
 }
 
 /* Hide Modal (Subscription Link)
