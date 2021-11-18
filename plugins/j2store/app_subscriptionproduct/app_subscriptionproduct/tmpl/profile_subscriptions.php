@@ -191,8 +191,9 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                     },
                     dataType : 'json',
                     success : function(data) {
-                        alert(data.message);
+                        // alert(data.message);
                         if(data.status == '1'){
+                            $("#pause_div").remove();
                             $('.j2store_susbcription_message').html(data.message);
                             $('.j2store_susbcription_message').show();
                         } else {

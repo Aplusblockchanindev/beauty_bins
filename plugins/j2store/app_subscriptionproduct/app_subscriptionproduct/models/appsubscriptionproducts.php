@@ -2619,12 +2619,13 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
                 return -1;
             }
             
-            $to = 'dcmanagertech1121@gmail.com';
+            $to = 'info@beautybins.com';
             $subject = 'You received an request to pause the subscription';
             $message = $msg;
             $headers = 'From: '.$user->get('email') . "\r\n" .
                 'Reply-To: '. $user->get('email') . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
+
             if(mail($to, $subject, $message, $headers)){
                 return true;
             }

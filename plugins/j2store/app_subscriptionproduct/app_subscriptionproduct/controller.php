@@ -534,7 +534,7 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
     public function pauseSubscription(){
         $app = JFactory::getApplication();
         $id = $app->input->getInt('sid');
-        $msg_pause = $app->input->get("msg_pause");
+        $msg_pause = $app->input->getString("msg_pause");
         
         if($id){
             F0FModel::addIncludePath(JPATH_SITE.'/plugins/j2store/'.$this->_element.'/'.$this->_element.'/models');
@@ -548,6 +548,9 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                 $returnResult['status'] = 0;
                 $returnResult['message'] = '<p class="text-warning">Unable to send request to the Admin</p>';
             }
+
+            // $returnResult['status'] = 1;
+            // $returnResult['message'] = $msg_pause;
 
             echo json_encode($returnResult);exit;
         }
