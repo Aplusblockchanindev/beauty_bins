@@ -125,6 +125,7 @@ input[type="text"] {
 #s5_nav li {
     padding-top: 20px;
     transition: background 350ms ease-in-out 0s !important;
+    height: auto;
 }
 
 .module_round_box.highlight1 {
@@ -297,9 +298,9 @@ a.social_icon:hover{
 }
 @media screen and (max-width: 1280px){
     #s5_logo_wrap{
-        width: 330px !important;
-        padding-left:25px;
-        padding-right:25px;
+        width: 300px !important;
+        padding-left:1%;
+        padding-right:1%;
     }
     #s5_nav li .s5_level1_span1{
         padding:8px !important
@@ -321,6 +322,7 @@ a.social_icon:hover{
         padding-left:0px;
         padding-right:0px;
     }
+    
 }
 @media screen and (max-width: 900px){
     #s5_logo_wrap{
@@ -353,9 +355,17 @@ a.social_icon:hover{
     display: flex;
     width: 100% !important;
 } */
-@media screen and (min-width: 1024px){
-    #s5_pos_custom_1_2_wrap #s5_pos_custom_2_wrap{
-        top:60% !important;
+#s5_pos_custom_1_2_wrap #s5_pos_custom_2_wrap .video_text_large{
+    font-size:4em;
+}
+@media screen and (max-width:1040px) and (min-width: 970px){
+    #s5_pos_custom_1_2_wrap #s5_pos_custom_2_wrap .video_text_large{
+        font-size:3em;
+    }
+}
+@media screen and (max-width: 970px){
+    #s5_pos_custom_1_2_wrap #s5_pos_custom_2_wrap .video_text_large{
+        font-size:2em;
     }
 }
 
@@ -483,4 +493,9 @@ a.social_icon:hover{
 }
 .bfQuickMode .bfElemWrap{
     padding:0 10px !important;
+}
+#s5_menu_wrap2 #s5_menu_wrap_inner #s5_login_custom_4_wrap #s5_pos_custom_4_wrap{
+    position: absolute;
+    right: 1%;
+    margin-top: -10px;
 }
