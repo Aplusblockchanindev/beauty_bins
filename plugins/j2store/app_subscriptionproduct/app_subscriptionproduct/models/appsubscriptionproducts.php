@@ -847,6 +847,10 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
      * */
     public function isDisplayCardUpdate($subscription){
         $display = false;
+        $subscription->j2store_subscription_id = 46;
+        $subscription->meta = $this->getAllSubscriptionMetaData($subscription->j2store_subscription_id);
+
+        var_dump($subscription->meta['stripe_customer_id']['metavalue']);
         if(!empty($subscription) && isset($subscription->j2store_subscription_id) && !empty($subscription->j2store_subscription_id)){
             if(in_array($subscription->status, array('active'))){
                 $params = $this->getpluginParams();
@@ -2320,7 +2324,7 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
         $subscription = $this->getSubscriptionById($subscriptionId);
         if(!empty($subscription)){
             $hasRenewal = $this->hasRenewal($subscription);
-            if($hasRenewal){
+            if($hasRenewal){    
                 $comment = JText::_('J2STORE_SUBSCRIPTION_HISTORY_PROCESSING_RENEWAL');
                 $this->addSubscriptionHistoryMeta($subscription->j2store_subscription_id, $comment, $subscription->status);
                 $newOrderId = $this->createNewOrderForRenewal($subscription);

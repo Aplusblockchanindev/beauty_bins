@@ -122,7 +122,7 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 if($item->status == 'active' || $item->status == 'in_trial'){
                                     ?>
                                     <!-- <button type="button" class="btn btn-warning" onclick="cancelSubscription('<?php echo $item->j2store_subscription_id; ?>')"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_CANCEL'); ?></button> -->
-                                    <button type="button" class="btn btn-warning" onclick="pauseSubscription('<?php echo $item->j2store_subscription_id; ?>')">Pause</button>
+                                    <button type="button" class="btn btn-warning" onclick="pauseSubscription('<?php echo $item->j2store_subscription_id; ?>')">Pause Services</button>
                                     <?php
                                 }
                                 $showRenewalBtn = $vars->model->hasRenew($item);
