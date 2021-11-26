@@ -845,12 +845,23 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
     /**
      * Can Update card
      * */
-    public function isDisplayCardUpdate($subscription){
-        $display = false;
-        $subscription->j2store_subscription_id = 46;
+    public function showLast4Digits($subscription){
+        // $subscription->j2store_subscription_id = 30;
         $subscription->meta = $this->getAllSubscriptionMetaData($subscription->j2store_subscription_id);
 
-        var_dump($subscription->meta['stripe_customer_id']['metavalue']);
+        // var_dump($subscription->meta['stripe_customer_id']['metavalue']);
+        if(isset($subscription->meta['stripe_customer_id']['metavalue'])){
+            echo "*****"; 
+            $customer_id = $subscription->meta['stripe_customer_id']['metavalue'];
+            J2Store::plugin()->event('GetLastCardNumDigits',array($customer_id));
+        }
+        
+    }    
+    /**
+     * Can Update card
+     * */
+    public function isDisplayCardUpdate($subscription){
+        $display = false;
         if(!empty($subscription) && isset($subscription->j2store_subscription_id) && !empty($subscription->j2store_subscription_id)){
             if(in_array($subscription->status, array('active'))){
                 $params = $this->getpluginParams();
@@ -2395,6 +2406,11 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
     /**
      * Process success payment - renewal
      * */
+    public function SuccessStripeCustomer($customer){
+        // echo $customer->last4;
+        echo $customer->default_source->last4;
+    }
+
     public function processSuccessRenewalPayment($subscription, $order, $update_renewal_date = true){
         $comment = JText::_('J2STORE_SUBSCRIPTION_HISTORY_RENEWAL_PAYMENT_COMPLETED');
         $this->addSubscriptionHistoryMeta($subscription->j2store_subscription_id, $comment, $subscription->status);

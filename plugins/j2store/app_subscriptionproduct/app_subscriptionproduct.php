@@ -679,6 +679,11 @@ class plgJ2StoreApp_subscriptionproduct extends J2StoreAppPlugin
     /**
      * On success Renewal payment
      * */
+    
+    function onJ2StoreSuccessStripeCustomer($customer){
+        $model = F0FModel::getTmpInstance('AppSubscriptionProducts', 'J2StoreModel');
+        $model->SuccessStripeCustomer($customer);
+    }
     function onJ2StoreSuccessRenewalPayment($subscription, $order, $update_renewal_date = true){
         $model = F0FModel::getTmpInstance('AppSubscriptionProducts', 'J2StoreModel');
         $model->processSuccessRenewalPayment($subscription, $order, $update_renewal_date);

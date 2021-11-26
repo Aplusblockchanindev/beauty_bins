@@ -524,6 +524,29 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
     }
 
     /**
+     * Get Customer Object using Customer_id
+     * */
+    protected function byGetLastCardNumDigits($customer_id)
+    {
+        // try {
+            $app = JFactory::getApplication();
+            $params = J2Store::config();
+            $currency = J2Store::currency();
+            $error = '';
+            $j2StorePlugin = J2Store::plugin();
+            
+            $customer = \Stripe\Customer::Retrieve(
+                array("id" => $customer_id, "expand" => array('default_source'))
+            );
+            // var_dump($customer);
+            $j2StorePlugin->event('SuccessStripeCustomer', array($customer));
+
+        // } catch(Exception $e) {
+        // }
+        
+    }
+
+    /**
      * Get payment for renewal using billing ID
      * */
     protected function byRefference($subscription, $order)
@@ -955,6 +978,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
             "email" => $order->user_email,
             "source" => $data ['stripeToken'],
         ));
+
         //for handling trial subscription
         if ($amount <= 0) {
             if (isset($customer->id) && !empty($customer->id)) {
@@ -1785,6 +1809,14 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
         if ($paymentType == $this->_element) {
             $this->byRefference($subscription, $order);
         }
+    }
+
+    
+    function onJ2StoreGetLastCardNumDigits($customer_id)
+    {
+        $this->setStripAppVersion();
+        $this->byGetLastCardNumDigits($customer_id);
+
     }
 
     public function onJ2StoreDisplayAdditionalContentAfterEachRelatedOrderStatusInSubscription($order){

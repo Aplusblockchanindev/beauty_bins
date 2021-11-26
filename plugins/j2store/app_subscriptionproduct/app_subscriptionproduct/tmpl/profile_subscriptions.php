@@ -107,7 +107,8 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 }
                                 ?>
                             </td>
-                            <td data-app_id="<?php echo $vars->id; ?>" style="display:flex;">
+                            <td data-app_id="<?php echo $vars->id; ?>">
+                            <div style="display:flex;">
                                 <?php
                                 $support_trial = $vars->model->hasTrialSupport($item->payment_method);
                                 $display_card_update = $vars->model->isDisplayCardUpdate($item);
@@ -116,6 +117,7 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 <?php $link = JURI::root().'index.php?option=com_j2store&view=app&task=view&appTask=updateSubscriptionPaymentCard&id='.$vars->id.'&sid='.$item->j2store_subscription_id; ?>
                                     <a class="btn btn-primary subscription_update_card_btn" href="<?php echo $link; ?>">
                                         <?php echo JText::_('J2STORE_SUBSCRIPTION_UPDATE_CARD_DETAILS_BUTTON_LABEL'); ?>
+                                        <?php $vars->model->showLast4Digits($item); ?>
                                     </a>
                                     <?php
                                 }
@@ -140,6 +142,8 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 $parentOrder->load(array('order_id' => $item->order_id));
                                 echo J2Store::plugin()->eventWithHtml('DisplayAdditionalActionInSubscription', array( $subscriptionOrder, $parentOrder, $item ) ); //$item => Subscription
                                 ?>
+                                <?php //var_dump($item->status) ?>
+                            </div>
                             </td>
                         </tr>
                     <?php endforeach;?>
