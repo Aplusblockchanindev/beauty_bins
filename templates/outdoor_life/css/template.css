@@ -1043,6 +1043,7 @@ background:none !important;
 
 #s5_accordion_menu h3.s5_am_not_parent span.s5_accordion_menu_left {
 background:none !important;
+padding:0px;
 }
 
 #s5_accordion_menu h3.s5_am_not_parent {
@@ -1055,8 +1056,9 @@ padding:0px !important;}
 #s5_accordion_menu h3.s5_am_toggler a.mainlevel {	
 width:auto !important;
 border:none !important;
-padding:0px !important;
+padding:15px !important;
 text-decoration:none !important;
+display:block;
 margin:0px !important;}
 
 div.s5_accordion_menu_element li {	

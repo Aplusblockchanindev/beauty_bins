@@ -851,7 +851,6 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
 
         // var_dump($subscription->meta['stripe_customer_id']['metavalue']);
         if(isset($subscription->meta['stripe_customer_id']['metavalue'])){
-            echo "*****"; 
             $customer_id = $subscription->meta['stripe_customer_id']['metavalue'];
             J2Store::plugin()->event('GetLastCardNumDigits',array($customer_id));
         }

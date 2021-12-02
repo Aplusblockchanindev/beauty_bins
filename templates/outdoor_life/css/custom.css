@@ -1,4 +1,4 @@
-/* Version : 0.0.0 */
+/* Version : 0.0.1 */
 
 /* Add your own custom css to this file. You may wish to use css !important calls to override css from the template css files.
 ----------------------------------------------------------- */
@@ -498,4 +498,17 @@ a.social_icon:hover{
     position: absolute;
     right: 1%;
     margin-top: -10px;
+}
+
+.s5_outer h3 span.s5_accordion_menu_left {
+    padding: 0px !important;
+} 
+.s5_outer #s5_accordion_menu h3.s5_am_toggler a.mainlevel{
+          
+    display: block;
+    padding: 15px !important;
+}
+
+.j2store-myprofile-address-controls {
+    display:none;
 }

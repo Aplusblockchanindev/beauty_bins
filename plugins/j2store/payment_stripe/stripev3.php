@@ -528,7 +528,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
      * */
     protected function byGetLastCardNumDigits($customer_id)
     {
-        // try {
+        try {
             $app = JFactory::getApplication();
             $params = J2Store::config();
             $currency = J2Store::currency();
@@ -539,10 +539,12 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
                 array("id" => $customer_id, "expand" => array('default_source'))
             );
             // var_dump($customer);
+            echo "*****"; 
             $j2StorePlugin->event('SuccessStripeCustomer', array($customer));
 
-        // } catch(Exception $e) {
-        // }
+        } catch(Exception $e) {
+            // echo "";
+        }
         
     }
 
