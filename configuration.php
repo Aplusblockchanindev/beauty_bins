@@ -8,7 +8,7 @@ class JConfig {
 	public $MetaVersion = '0';
 	public $access = '1';
 	public $cache_handler = 'file';
-	public $cachetime = '15';
+	public $cachetime = '60';
 	public $caching = '0';
 	public $captcha = 'recaptcha';
 	public $cookie_domain = '';

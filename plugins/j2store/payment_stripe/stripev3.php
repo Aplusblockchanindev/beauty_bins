@@ -446,8 +446,204 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
 
         switch ($paction) {
             case 'display' :
+                $data['order_id'] = "1633624321147";
+                $order_id = $data['order_id'];
+                // var_dump($data);
+                $order = F0FTable::getInstance('Order', 'J2StoreTable')->getClone();
+                $order->load(array(
+                    'order_id' => $data ['order_id']
+                ));
+                $orderinfo = $order->getOrderInformation();
+        
+                // $subscription = $($order_id);
                 $html = JText::_($this->params->get('onafterpayment', ''));
                 $html .= $this->_displayArticle();
+                // var_dump($orderinfo);
+                // var_dump($order);
+                $items = $order->getItems();
+                // var_dump($items);
+                $order_info_html = 
+                "<table class='order_info_table' width='100%'>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class='order_subject'><strong>Order Information</strong></div>
+                                <div class='order_line'><strong>Order ID: </strong>".$order_id."</div>
+                                <div class='order_line'><strong>Invoice Number: </strong>".$order->getInvoiceNumber()."</div>
+                                <div class='order_line'><strong>Date: </strong>".$order->modified_on."</div>
+                                <div class='order_line'><strong>Order Amount: </strong>".sprintf("%.2f",$order->order_total)."</div>
+                                <div class='order_line'><strong>Day of Trash Pickup : </strong>".json_decode($orderinfo->all_billing)->dayoftrashpickup->value."</div>
+                                <div class='order_line'><strong>Approximate Time of Pickup : </strong>".json_decode($orderinfo->all_billing)->approximatetimeofpickup->value."</div>
+                                <div class='order_line'><strong>Name of Trash Company : </strong>".json_decode($orderinfo->all_billing)->nameoftrashcompany->value."</div>
+                                <div class='order_line'><strong>Gate Code : </strong>".json_decode($orderinfo->all_billing)->gatecode->value."</div>
+                            </td>
+                            <td>
+                                <div class='order_subject'><strong>Billing Information</strong></div>
+                                <div class='order_line'>".$orderinfo->billing_first_name." ".$orderinfo->billing_last_name."</div>
+                                <div class='order_line'>".$orderinfo->billing_address_1." ".$orderinfo->billing_address_2."</div>
+                                <div class='order_line'>".$orderinfo->billing_city."  ".$orderinfo->billing_zone_name."  ".$orderinfo->billing_zone_id."</div>
+                                <div class='order_line'>".convert_phone_number($orderinfo->billing_phone_1)."  ".convert_phone_number($orderinfo->billing_phone_2)."</div>
+                                <div class='order_line'>".json_decode($orderinfo->all_billing)->email->value."</div>
+                                <div class='order_subject'><strong>Service Address</strong></div>
+                                <div class='order_line'>".$orderinfo->shipping_first_name." ".$orderinfo->shipping_last_name."</div>
+                                <div class='order_line'>".$orderinfo->shipping_address_1." ".$orderinfo->shipping_address_2."</div>
+                                <div class='order_line'>".$orderinfo->shipping_city."  ".$orderinfo->shipping_zone_name."  ".$orderinfo->shipping_zone_id."</div>
+                                <div class='order_line'>".convert_phone_number($orderinfo->shipping_phone_1)."  ".convert_phone_number($orderinfo->shipping_phone_2)."</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <style>
+                    .order_info_table{
+                        margin-top:30px;
+                    }
+                    .order_info_table td{
+                        padding:5px;
+                        border-top: groove;
+                        vertical-align: baseline;
+                    }
+                    .order_info_table .order_subject{
+                        margin-top:10px;
+                        padding:10px 0px;
+                    }
+                </style>
+                ";
+                $order_info_html .= "<table class='j2store-cart-table table table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>".JText::_('J2STORE_CART_LINE_ITEM')."</th>
+                            <th>".JText::_('J2STORE_CART_LINE_ITEM_QUANTITY')."</th>
+                            <th>".JText::_('J2STORE_CART_LINE_ITEM_TOTAL')."</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                foreach ($items as $item):
+					$registry = new JRegistry;
+					$registry->loadString($item->orderitem_params);
+					$item->params = $registry;
+					$thumb_image = $item->params->get('thumb_image', '');
+                    $order_info_html .= "<tr><td>";
+                    if($item->params->get('show_thumb_cart', 1) && !empty($thumb_image)):
+                        $order_info_html .= "<span class='cart-thumb-image'>";
+                        if(JFile::exists(JPATH_SITE.'/'.$thumb_image)):
+                            $order_info_html .= "<img src=" . JUri::root(true). '/'.$thumb_image;
+                        endif;
+                        $order_info_html .= "</span>";
+                    endif;
+                    $order_info_html .= "<span class='cart-product-name'>".$item->orderitem_name."</span><br />";
+                    if(isset($item->orderitemattributes)):
+                        $order_info_html .= "<span class='cart-item-options'>";
+                        foreach ($item->orderitemattributes as $attribute):
+                            if($attribute->orderitemattribute_type == 'file') {
+                                unset($table);
+                                $table = F0FTable::getInstance('Upload', 'J2StoreTable')->getClone();
+                                if($table->load(array('mangled_name'=>$attribute->orderitemattribute_value))) {
+                                    $attribute_value = $table->original_name;
+                                }
+                            }else {
+                                $attribute_value = $attribute->orderitemattribute_value;
+                            }
+                            $order_info_html .= "<small> - " . JText::_($attribute->orderitemattribute_name). ":" . $attribute_value."</small>";
+                            if(JFactory::getApplication()->isAdmin() && $attribute->orderitemattribute_type=='file' && JFactory::getApplication()->input->getString('task')!='printOrder'):
+                                $order_info_html .= "<a target='_blank' class='btn btn-primary' href='".JRoute::_('index.php?option=com_j2store&view=orders&task=download&ftoken='.$attribute->orderitemattribute_value)."'>
+                                <i class='icon icon-download'></i>".JText::_('J2STORE_DOWNLOAD')."</a>";
+                            endif;
+                            $order_info_html .= "<br />";
+                        endforeach;
+                        $order_info_html .= "</span>";
+                        if($item->params->get('show_price_field', 1)):
+                            $order_info_html .= "<span class='cart-product-unit-price'>
+                            <span class='cart-item-title'>".JText::_('J2STORE_CART_LINE_ITEM_UNIT_PRICE')."</span>								
+                            <span class='cart-item-value'>"
+                            .$order->get_formatted_order_lineitem_price($item, $item->params->get('checkout_price_display_options', 1))." ".$order->currency_code.
+                            "</span></span>";
+                        endif;
+                        if(!empty($item->orderitem_sku)):
+                            $order_info_html .= "<br /><span class='cart-product-sku'>
+								<span class='cart-item-title'>".JText::_('J2STORE_CART_LINE_ITEM_SKU')."</span>
+								<span class='cart-item-value'>".$item->orderitem_sku."</span>
+							</span>";
+                        endif;
+                        // J2Store::plugin()->eventWithHtml('AfterDisplayLineItemTitle', array($item, $this->order, $this->params));
+                        $order_info_html .= "</td>";
+                        $order_info_html .= "<td>".$item->orderitem_quantity."</td>
+                        <td class='cart-line-subtotal'>".
+                            $item->orderitem_finalprice_without_tax ." " .$order->currency_code. 
+                            "</td></tr>";
+                    endif;
+                endforeach;
+                $order_info_html .="</tbody>";
+                $order_info_html .="<tfoot class='cart-footer'>
+                    <tr>
+                        <td colspan='3'>
+                            <h3>
+                                ".JText::_('J2STORE_CART_TOTALS')."
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>".JText::_('J2STORE_CART_SUBTOTAL')."
+                        </td>
+                        <td>".$order->order_subtotal_ex_tax." ".$order->currency_code."
+                        </td>
+                    </tr>";
+                if(isset($order->order_shipping) && ($order->order_shipping > 0) && !empty($this->shipping->ordershipping_name)):
+                    $order_info_html .= "<tr>
+                    <td colspan='2'>".JText::_(stripslashes($this->shipping->ordershipping_name))."
+                    </td><td>".$order->order_shipping." ".$order->currency_code."</td></tr>";
+                endif;
+                if(isset($order->order_shipping_tax) && ($order->order_shipping_tax > 0) && $order->order_shipping_tax > 0):
+                    $order_info_html .= "<tr>
+                    <td colspan='2'>".JText::_('J2STORE_ORDER_SHIPPING_TAX')."
+                    </td><td>".$order->order_shipping_tax." ".$order->currency_code."</td></tr>";
+                endif;
+                foreach ( $order->get_fees() as $fee ) :
+                    $order_info_html .= "<tr>
+                    <td colspan='2'>".JText::_($fee->name)."<a class='j2store-remove remove-icon' href='javascript:void(0)' onClick='removeFee(".$fee->j2store_orderfee_id."')>X</a>
+                    </td><td>".$order->get_formatted_fees($fee, $this->params->get('checkout_price_display_options', 1))." ".$order->currency_code."</td></tr>";
+                endforeach;
+                if($order->order_surcharge > 0):
+                    $order_info_html .= "<tr>
+                    <td colspan='2'>".JText::_('J2STORE_CART_SURCHARGE')."</td><td>".
+                    $order->order_surcharge." ".$order->currency_code."</td></tr>";
+                endif;
+                foreach($order->getOrderDiscounts() as $discount):
+                    if($discount->discount_amount > 0 ):
+                        $order_info_html .= "<tr><td colspan='2'>";
+                        if($discount->discount_type == 'coupon'):
+                            $order_info_html .= JText::sprintf('J2STORE_COUPON_TITLE', $discount->discount_title)."
+							<a class='j2store-remove remove-icon' href='javascript:void(0)' onClick='removeCoupon()'>X</a>";
+                        elseif($discount->discount_type == 'voucher'):
+                            $order_info_html .= JText::sprintf('J2STORE_VOUCHER_TITLE', $discount->discount_title)."<a class='j2store-remove remove-icon' href='javascript:void(0)' onClick='removeVouchers()'>X</a>";
+                        else:
+                            $order_info_html .= JText::sprintf('J2STORE_DISCOUNT_TITLE', $discount->discount_title);
+                        endif;
+                        $order_info_html .= "</td><td>". $order->get_formatted_discount($discount, $this->params->get('checkout_price_display_options', 1))." ". $order->currency_code."</td></tr>";
+                    endif;
+                endforeach;
+                if(isset($this->taxes) && count($this->taxes) ):
+                    foreach ($this->taxes as $tax):
+                        $order_info_html .= "<tr>
+						<td colspan='2'>";
+                        if($this->params->get('checkout_price_display_options', 1)):
+                            $order_info_html .= JText::sprintf('J2STORE_CART_TAX_INCLUDED_TITLE', $tax->ordertax_title, floatval($tax->ordertax_percent).'%');
+                        else:
+                            JText::sprintf('J2STORE_CART_TAX_EXCLUDED_TITLE', $tax->ordertax_title, floatval($tax->ordertax_percent).'%');
+                            $order_info_html .= JText::sprintf('J2STORE_CART_TAX_EXCLUDED_TITLE', $tax->ordertax_title, floatval($tax->ordertax_percent).'%');
+                        endif;
+                        $order_info_html .= "</td><td>".$tax->ordertax_amount." ".$order->currency_code."</td></tr>";
+                    endforeach;
+                endif;
+                if($order->order_refund):
+                    $order_info_html .= "<tr><td colspan='2'>".JText::_('J2STORE_CART_REFUND')."</td><td>".
+                    $order->order_refund." ". $order->currency_code."</td></tr>";
+                endif;
+
+
+
+                $order_info_html .="</table>";
+                $html .= $order_info_html;
+                    
                 break;
             case 'process_intent':
                 $result = $this->_process_intent();
@@ -475,6 +671,20 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
 
         return $html;
     }
+    function convert_phone_number($phone_number)
+    {
+        $ret_val = $phone_number;
+        if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+        {
+            $ret_val = substr_replace($ret_val, "-", 3, 0);
+            $ret_val = substr_replace($ret_val, "-", 7, 0);
+            return $ret_val;
+        }
+        // if(strpos($phone_number,"-"))
+
+        return $ret_val;
+    }
+
 
     /**
      * Handle error for stripe while process payment
