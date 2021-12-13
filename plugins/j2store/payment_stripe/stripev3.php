@@ -446,7 +446,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
 
         switch ($paction) {
             case 'display' :
-                $data['order_id'] = "1633624321147";
+                // $data['order_id'] = "1633624321147";
                 $order_id = $data['order_id'];
                 // var_dump($data);
                 $order = F0FTable::getInstance('Order', 'J2StoreTable')->getClone();
