@@ -35,8 +35,8 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                     </th>
                     <th><?php echo JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_USER'); ?>
                     </th>
-                    <th><?php echo JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_START_ON'); ?>
-                    </th>
+                    <!-- <th><?php echo JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_START_ON'); ?>
+                    </th> -->
                     <th><?php echo JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_END_ON'); ?>
                     </th>
                     <th><?php echo JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_NEXT_RENEWAL_ON'); ?>
@@ -78,12 +78,12 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 echo "<br>";
                                 echo $userDetails->get('email');
                                 ?></td>
-                            <td><?php
+                            <!-- <td><?php
                                 $tz = JFactory::getConfig()->get('offset');
                                 $date = JFactory::getDate($item->start_on, $tz);
                                 echo $date->format($j2_params->get('date_format', JText::_('DATE_FORMAT_LC1')), true);
                                 ?>
-                            </td>
+                            </td> -->
                             <td><?php
                                 if($item->subscription_length > 0) {
                                     $tz = JFactory::getConfig()->get('offset');
@@ -98,8 +98,8 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 if ($item->next_payment_on < $item->end_on || $item->subscription_length == 0) {
                                     $tz = JFactory::getConfig()->get('offset');
                                     $date = JFactory::getDate($item->next_payment_on, $tz);
-                                    echo $date->format($j2_params->get('date_format', JText::_('DATE_FORMAT_LC1')), true);
-                                    echo "<br>";
+                                    // echo $date->format($j2_params->get('date_format', JText::_('DATE_FORMAT_LC1')), true);
+                                    // echo "<br>";
                                     $renewal_amount = $vars->model->getRenewalAmount($item);
                                     echo J2Store::currency()->format($renewal_amount['renewal_amount'], $item->currency_code, $item->currency_value);
                                 } else {
@@ -124,7 +124,7 @@ $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
                                 if($item->status == 'active' || $item->status == 'in_trial'){
                                     ?>
                                     <!-- <button type="button" class="btn btn-warning" onclick="cancelSubscription('<?php echo $item->j2store_subscription_id; ?>')"><?php echo JText::_('J2STORE_SUBSCRIPTIONAPP_CANCEL'); ?></button> -->
-                                    <button type="button" class="btn btn-warning" onclick="pauseSubscription('<?php echo $item->j2store_subscription_id; ?>')">Pause Services</button>
+                                    <!-- <button type="button" class="btn btn-warning" onclick="pauseSubscription('<?php echo $item->j2store_subscription_id; ?>')">Pause Services</button> -->
                                     <?php
                                 }
                                 $showRenewalBtn = $vars->model->hasRenew($item);

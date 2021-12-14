@@ -78,14 +78,14 @@ $page_heading_text = $page_heading->get('page_heading','');
                  	</li>
                  	<?php endif;?>
                  	
-                 	<?php if($this->user->id) : ?>
-                    <li>
+                 	 <?php //if($this->user->id) : ?>
+                    <!--<li>
                   		<a href="#address-tab" data-toggle="tab">
-                  			<i class="fa fa-globe"></i>
-                  		 	<?php echo JText::_('J2STORE_MYPROFILE_ADDRESS'); ?>
-                  		</a>
-                  </li>
-                  <?php endif; ?>
+                  			<i class="fa fa-globe"></i>-->
+                  		 	<?php //echo JText::_('J2STORE_MYPROFILE_ADDRESS'); ?>
+                  		<!--</a>
+                  </li> -->
+                  <?php// endif; ?>
             	</ul>
 				<div class="tab-content">
 	                  <div class="tab-pane" id="orders-tab">
