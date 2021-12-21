@@ -125,7 +125,7 @@ class J2StoreTableOrder extends F0FTable
 	public function getItems ()
 	{
 
-		if ( empty( $this->_items ) && !empty( $this->order_id ) ) {
+		if (!empty( $this->order_id ) ) {
 			//retrieve the order's items
 			$model = F0FModel::getTmpInstance ( 'OrderItems', 'J2StoreModel' )
 				->order_id ( $this->order_id );
@@ -1053,7 +1053,8 @@ class J2StoreTableOrder extends F0FTable
 
 	function getOrderInformation ()
 	{
-		if ( !isset( $this->_orderinfo ) && !empty( $this->order_id ) ) {
+		// if ( !isset( $this->_orderinfo ) && !empty( $this->order_id ) ) {
+		if (!empty( $this->order_id ) ) {
 			$this->_orderinfo = F0FTable::getInstance ( 'Orderinfo', 'J2StoreTable' );
 			$this->_orderinfo->load ( array( 'order_id' => $this->order_id ) );
 		}

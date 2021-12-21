@@ -1019,7 +1019,9 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             'created_on' => JText::_('J2STORE_SUBSCRIPTION_DATE'),
             'order_state_id' => JText::_('J2STORE_EMAILTEMPLATE_ORDERSTATUS'),
             'order_total' => JText::_('J2STORE_CART_GRANDTOTAL'),
-        );
+            'trash_pickup' => 'Day of Trash Pickup',
+            'number_bins' => 'Number of Bins',
+       );
         if(count($subscriptions)){
             $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
             $tz = JFactory::getConfig()->get('offset');
@@ -1031,6 +1033,30 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                     'order_id' => $subscription->order_id
                 ));
                 $row_key = $key.'_'.$parentOrder->j2store_order_id;
+
+                // Day of Trash pickup, Number of Bins - Edited by DC web
+                
+                $orderinfo = $parentOrder->getOrderInformation();
+                // var_dump($parentOrder->order_id);
+                // var_dump($orderinfo->all_billing);
+                $items = $parentOrder->getItems();
+                
+                $trash_pickup = json_decode($orderinfo->all_billing)->dayoftrashpickup->value;
+                $number_bins = "";
+                $item_ind = 0;
+                // var_dump("this is for the item: ".$item_ind);
+                // var_dump($parentOrder);
+                foreach($items as $item){
+                    $item_ind++;
+                    if(isset($item->orderitemattributes))
+                    {
+                        $number_bins = $item->orderitemattributes[0]->orderitemattribute_value; 
+                    }
+                }
+                // $subscription->trash_pickup = $trash_pickup;
+                // $subscription->number_bins = $number_bins;
+
+
                 foreach ($data['headers'] as $field => $fieldHeader){
                     if(in_array($field, array('j2store_subscription_id', 'orderitem_name', 'status'))){
                         if($field == 'status') {
@@ -1057,6 +1083,10 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                             $data['content'][$row_key][] = JText::_($orderStatus->orderstatus_name);
                         } else if($field == 'order_total') {
                             $data['content'][$row_key][] = J2Store::currency()->format($parentOrder->$field, $parentOrder->currency_code, $parentOrder->currency_value);
+                        } else if($field == 'trash_pickup'){
+                            $data['content'][$row_key][] = $trash_pickup;
+                        } else if($field == 'number_bins'){
+                            $data['content'][$row_key][] = $number_bins;
                         } else {
                             $data['content'][$row_key][] = $parentOrder->$field;
                         }
@@ -1064,6 +1094,8 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                 }
                 $relatedOrders = $model->getRelatedRenewalOrders($parentOrder->j2store_order_id, $subscription->j2store_subscription_id);
                 foreach ($relatedOrders as $relatedOrder){
+                    // $orderinfo = $relatedOrder->getOrderInformation();
+                    
                     $row_key = $key.'_'.$relatedOrder->j2store_order_id;
                     foreach ($data['headers'] as $field => $fieldHeader){
                         if(in_array($field, array('j2store_subscription_id', 'orderitem_name', 'status'))){
@@ -1092,12 +1124,17 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                                 $data['content'][$row_key][] = JText::_($orderStatus->orderstatus_name);
                             } else if($field == 'order_total') {
                                 $data['content'][$row_key][] = J2Store::currency()->format($relatedOrder->$field, $relatedOrder->currency_code, $relatedOrder->currency_value);
+                            } else if($field == 'trash_pickup'){
+                                $data['content'][$row_key][] = $trash_pickup;
+                            } else if($field == 'number_bins'){
+                                $data['content'][$row_key][] = $number_bins;
                             } else {
-                                $data['content'][$row_key][] = $relatedOrder->$field;
+                                    $data['content'][$row_key][] = $relatedOrder->$field;
                             }
                         }
                     }
                 }
+                // $parentOrder->_orderinfo = null;
             }
 
         } else {
