@@ -1006,6 +1006,38 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
         exit;
     }
 
+    // Get Trash pickup data
+    public function get_trash_pickup_info($order){
+        $orderinfo = $order->getOrderInformation();
+        // var_dump($$order->order_id);
+        // var_dump($orderinfo->all_billing);
+        $trash_pickup = "";
+        if(isset(json_decode($orderinfo->all_billing)->dayoftrashpickup->value))
+        {
+            $trash_pickup = json_decode($orderinfo->all_billing)->dayoftrashpickup->value;
+        }        
+        return $trash_pickup;
+
+    }
+
+    // Get Number of Bins
+    public function get_number_of_bins($order){
+        $number_bins = "";
+        $item_ind = 0;
+        // var_dump("this is for the item: ".$item_ind);
+        // var_dump($$order);
+        $items = $order->getItems();
+        foreach($items as $item){
+            $item_ind++;
+            if(isset($item->orderitemattributes))
+            {
+                $number_bins = $item->orderitemattributes[0]->orderitemattribute_value; 
+            }
+        }
+        return $number_bins;
+
+    }
+
     /**
      * get Subscription Export fields with orders
      * */
@@ -1036,25 +1068,8 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
 
                 // Day of Trash pickup, Number of Bins - Edited by DC web
                 
-                $orderinfo = $parentOrder->getOrderInformation();
-                // var_dump($parentOrder->order_id);
-                // var_dump($orderinfo->all_billing);
-                $items = $parentOrder->getItems();
-                
-                $trash_pickup = json_decode($orderinfo->all_billing)->dayoftrashpickup->value;
-                $number_bins = "";
-                $item_ind = 0;
-                // var_dump("this is for the item: ".$item_ind);
-                // var_dump($parentOrder);
-                foreach($items as $item){
-                    $item_ind++;
-                    if(isset($item->orderitemattributes))
-                    {
-                        $number_bins = $item->orderitemattributes[0]->orderitemattribute_value; 
-                    }
-                }
-                // $subscription->trash_pickup = $trash_pickup;
-                // $subscription->number_bins = $number_bins;
+                $trash_pickup = $this->get_trash_pickup_info($parentOrder);
+                $number_bins = $this->get_number_of_bins($parentOrder);
 
 
                 foreach ($data['headers'] as $field => $fieldHeader){
@@ -1160,6 +1175,8 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             'trial_end_on' => JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_TRIAL_END_ON'),
             'next_payment_on' => JText::_('J2STORE_APP_SUBSCRIPTIONPRODUCT_NEXT_RENEWAL_ON'),
             'renewal_amount' => JText::_('J2STORE_SUBSCRIPTION_RENEWAL_AMOUNT'),
+            'trash_pickup' => 'Day of Trash Pickup',
+            'number_bins' => 'Number of Bins',
             );
         if(count($subscriptions)){
             $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
@@ -1167,6 +1184,13 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             $j2_params = J2Store::config();
             $model = F0FModel::getTmpInstance('AppSubscriptionProducts', 'J2StoreModel');
             foreach ($subscriptions as $key => $subscription){
+                $parentOrder = F0FTable::getAnInstance('Order','J2StoreTable');
+                $parentOrder->load(array(
+                    'order_id' => $subscription->order_id
+                ));
+                $trash_pickup = $this->get_trash_pickup_info($parentOrder);
+                $number_bins = $this->get_number_of_bins($parentOrder);
+
                 foreach ($data['headers'] as $field => $fieldHeader){
                     if($field == 'status') {
                         $status = $subsStatusObj->getStatus($subscription->$field);
@@ -1184,6 +1208,10 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                     } else if($field == 'renewal_amount'){
                         $renewal_amount = $model->getRenewalAmount($subscription);
                         $data['content'][$key][] = J2Store::currency()->format($renewal_amount['renewal_amount'], $subscription->currency_code, $subscription->currency_value);
+                    } else if($field == 'trash_pickup'){
+                        $data['content'][$key][] = $trash_pickup;
+                    } else if($field == 'number_bins'){
+                        $data['content'][$key][] = $number_bins;
                     } else {
                         $data['content'][$key][] = $subscription->$field;
                     }
