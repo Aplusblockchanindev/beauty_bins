@@ -2,7 +2,7 @@
 // NOTE - You may change this file to suit your site needs
 ?>
 <span class="footerc">
-   <p style="font-size: 130%; color: #ffffff;">Get Started Today! <a href="Tel:13059077033" style="font-size: 120%; color: #ffffff; font-weight: 600;">305.907.7033</a></p><br/>
+   <p style="font-size: 130%; color: #ffffff;">Get Started Today! <a href="Tel:13059077033" style="font-size: 120%; color: #ffffff; font-weight: 600;">305.907.7033</a> Or email us at <a href="mailto:info@beautybins.com" style="font-size: 120%; color: #ffffff; font-weight: 600;">info@beautybins.com</a></p><br/>
 <img src="images/Beauty-Bins-Footer-Logo.png" alt="s5 logo" />
   <hr />
   Copyright &copy; <?php echo $s5_cur_year;?>  <?php echo $s5_csite_name;?>.
