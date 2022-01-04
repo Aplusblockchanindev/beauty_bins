@@ -1202,7 +1202,8 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                             $date = JFactory::getDate($subscription->$field, $tz);
                             $data['content'][$key][] = $date->format($j2_params->get('date_format', JText::_('DATE_FORMAT_LC1')), true);
                         }
-                    } else if($field == 'user_name'){
+                    } else if($field == 'user_name')
+                    {
                         $userDetails = JFactory::getUser($subscription->user_id);
                         $data['content'][$key][] = $userDetails->get('name');
                     } else if($field == 'renewal_amount'){
