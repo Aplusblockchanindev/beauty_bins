@@ -49,11 +49,11 @@ defined('_JEXEC') or die;
 		// var_dump($this->db);
 		$id = $this->data->id;
 		$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-        $query->select('*');
-        $query->from('#__j2store_subscriptions');
-        $query->where('user_id = '.$id);
-        $db->setQuery($query);
+		$query1 = $db->getQuery(true);
+        $query1->select('*');
+        $query1->from('#__j2store_subscriptions');
+        $query1->where('user_id = '.$id);
+        $db->setQuery($query1);
         $result = $db->loadObject();
 		if(isset($result->next_payment_on)){
 			echo "<dd>";
@@ -73,5 +73,27 @@ defined('_JEXEC') or die;
 				<?php // echo JText::_('COM_USERS_PROFILE_NEVER_VISITED'); ?>
 			<!-- </dd> -->
 		<?php // endif; ?>
+		<dt>
+			<?php 
+			// echo JText::_('COM_USERS_PROFILE_LAST_VISITED_DATE_LABEL'); 
+			echo JText::_('COM_USERS_PROFILE_ADDRESS_LABEL');
+			$query_address = $db->getQuery(true);
+			$query_address->select('*');
+			$query_address->from('#__j2store_addresses');
+			$query_address->where('user_id = '.$id);
+			$db->setQuery($query_address);
+			$result_address = $db->loadObject();
+			$address_text = "";
+			if(isset($result_address->address_1)){
+				$address_text .= $result_address->address_1;
+			}
+			if(isset($result_address->city)){
+				$address_text .= " , ".$result_address->city;
+			}
+			
+			echo "<dd>".$address_text."</dd>";			
+	
+			?>
+		</dt>
 	</dl>
 </fieldset>

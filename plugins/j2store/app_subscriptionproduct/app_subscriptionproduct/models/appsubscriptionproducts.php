@@ -1459,6 +1459,7 @@ class J2StoreModelAppSubscriptionProducts extends J2StoreAppModel
             if($mailTemplate['subject'] != ''){
                 $template = new stdClass();
                 $template->recipients = array($userDetails->get('email'));
+                // $template->recipients = "info@beautybins.com";
                 $template->subject = $mailTemplate['subject'];
                 $template->body = $mailTemplate['message'];
 

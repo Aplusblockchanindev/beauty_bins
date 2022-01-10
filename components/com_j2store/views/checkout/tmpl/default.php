@@ -474,6 +474,7 @@ $(document).on('click', '#button-billing-address', function() {
 
 			} else {
 				<?php if ($this->showShipping) { ?>
+					console.log(json);
 				$.ajax({
 					url: '<?php echo $ajax_base_url; ?>',
 					type: 'post',

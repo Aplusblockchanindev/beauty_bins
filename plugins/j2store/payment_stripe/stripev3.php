@@ -446,6 +446,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
 
         switch ($paction) {
             case 'display' :
+                // $oder_id = "1633624321147";
                 // $data['order_id'] = "1633624321147";
                 $order_id = $data['order_id'];
                 // var_dump($data);
@@ -454,7 +455,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
                     'order_id' => $data ['order_id']
                 ));
                 $orderinfo = $order->getOrderInformation();
-        
+                // var_dump($orderinfo);
                 // $subscription = $($order_id);
                 $html = JText::_($this->params->get('onafterpayment', ''));
                 $html .= $this->_displayArticle();
@@ -462,6 +463,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
                 // var_dump($order);
                 $items = $order->getItems();
                 // var_dump($items);
+                // $o_html = $this->_getLayout("cartsummary",$vars);
                 $order_info_html = 
                 "<table class='order_info_table' width='100%'>
                     <tbody>
@@ -643,6 +645,7 @@ class plgJ2StorePayment_stripe extends J2StorePaymentPlugin
 
                 $order_info_html .="</table>";
                 $html .= $order_info_html;
+                // $html .= $o_html;
                     
                 break;
             case 'process_intent':

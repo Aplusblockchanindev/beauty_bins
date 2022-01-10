@@ -94,6 +94,19 @@
 			size="30"
 			validate="equals"
 		/>
+		<!-- <field
+			name="address"
+			type="text"
+			label="COM_USERS_PROFILE_ADDRESS_LABEL"
+			description="COM_USERS_DESIRED_ADDRESS"
+			class="validate-address"
+			filter="address"
+			message="COM_USERS_PROFILE_ADDRESS_MESSAGE"
+			enabled="false"
+			size="30"
+			validate="address"
+		/> -->
+
 	</fieldset>
 	
 	<!-- Used to get the two factor authentication configuration -->

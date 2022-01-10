@@ -5,3 +5,6 @@
 
 #Fields: datetime	priority clientip	category	message
 2022-01-04T19:56:44+00:00	INFO 127.0.0.1	joomlacanceled	
+2022-01-06T17:56:07+00:00	INFO ::1	joomlacanceled	
+2022-01-06T17:56:14+00:00	INFO ::1	joomlafailure	Username and password do not match or you do not have an account yet.
+2022-01-06T17:56:18+00:00	INFO ::1	joomlacanceled	

@@ -1053,8 +1053,8 @@ class J2StoreTableOrder extends F0FTable
 
 	function getOrderInformation ()
 	{
-		// if ( !isset( $this->_orderinfo ) && !empty( $this->order_id ) ) {
-		if (!empty( $this->order_id ) ) {
+		if ( !isset( $this->_orderinfo ) && !empty( $this->order_id ) ) {
+		// if (!empty( $this->order_id ) ) {
 			$this->_orderinfo = F0FTable::getInstance ( 'Orderinfo', 'J2StoreTable' );
 			$this->_orderinfo->load ( array( 'order_id' => $this->order_id ) );
 		}

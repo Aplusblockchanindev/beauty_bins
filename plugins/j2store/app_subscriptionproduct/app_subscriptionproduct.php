@@ -690,9 +690,9 @@ class plgJ2StoreApp_subscriptionproduct extends J2StoreAppPlugin
         $model->refreshUserGroups($subscription->user_id);
         $send_email_on_renewal_success = true;
         J2Store::plugin()->event('SendEmailOnRenewalSuccess', array(&$send_email_on_renewal_success, $subscription, $order));
-        if($send_email_on_renewal_success === true){
-            $model->sendMailOnAfterSuccessRenewalPayment($subscription->j2store_subscription_id);
-        }
+        // if($send_email_on_renewal_success === true){
+        //     $model->sendMailOnAfterSuccessRenewalPayment($subscription->j2store_subscription_id);
+        // }
     }
 
     /**

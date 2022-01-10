@@ -69,23 +69,40 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 						<?php if ($field->hidden) : ?>
 							<?php echo $field->input; ?>
 						<?php else : ?>
-							<div class="control-group">
-								<div class="control-label">
-									<?php echo $field->label; ?>
-									<?php if (!$field->required && $field->type !== 'Spacer') : ?>
-										<span class="optional">
-											<?php echo JText::_('COM_USERS_OPTIONAL'); ?>
-										</span>
-									<?php endif; ?>
+							<?php
+								if($field->fieldname!='address'):
+							?>
+
+								<div class="control-group">
+									<div class="control-label">									
+										<?php echo $field->label; ?>
+										<?php if (!$field->required && $field->type !== 'Spacer') : ?>
+											<span class="optional">
+												<?php echo JText::_('COM_USERS_OPTIONAL'); ?>
+											</span>
+										<?php endif; ?>
+									</div>
+									<div class="controls">
+										<?php if ($field->fieldname === 'password1') : ?>
+											<?php // Disables autocomplete ?>
+											<input type="password" style="display:none">
+										<?php endif; ?>
+										<?php echo $field->input; ?>
+									</div>
 								</div>
-								<div class="controls">
-									<?php if ($field->fieldname === 'password1') : ?>
-										<?php // Disables autocomplete ?>
-										<input type="password" style="display:none">
-									<?php endif; ?>
-									<?php echo $field->input; ?>
+							<?php else: ?>
+								<div class="control-group">
+									<div class="control-label">									
+										<?php echo $field->label; ?>
+									</div>
+									<div class="controls">
+										<?php
+
+										?>
+										<input type="text" disabled value="This is Service Address" />
+									</div>
 								</div>
-							</div>
+							<?php endif; ?>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</fieldset>
