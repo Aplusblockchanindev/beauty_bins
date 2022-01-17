@@ -1008,8 +1008,9 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
 
     // Get Trash pickup data
     public function get_trash_pickup_info($order){
+        $order->setNullOrderInformation();
         $orderinfo = $order->getOrderInformation();
-        // var_dump($$order->order_id);
+        // var_dump($order->order_id);
         // var_dump($orderinfo->all_billing);
         $trash_pickup = "";
         if(isset(json_decode($orderinfo->all_billing)->dayoftrashpickup->value))

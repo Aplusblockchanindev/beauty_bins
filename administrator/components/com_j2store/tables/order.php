@@ -1061,6 +1061,10 @@ class J2StoreTableOrder extends F0FTable
 		return $this->_orderinfo;
 	}
 
+	function setNullOrderInformation(){
+		unset($this->_orderinfo);
+	}
+
 	function setOrderInformation ()
 	{
 
