@@ -1011,7 +1011,6 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
         $order->setNullOrderInformation();
         $orderinfo = $order->getOrderInformation();
         // var_dump($order->order_id);
-        // var_dump($orderinfo->all_billing);
         $trash_pickup = "";
         if(isset(json_decode($orderinfo->all_billing)->dayoftrashpickup->value))
         {
@@ -1021,6 +1020,60 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
 
     }
 
+    // Get Address
+    public function get_full_address($order){
+        $order->setNullOrderInformation();
+        $orderinfo = $order->getOrderInformation();
+        // var_dump($order->order_id);
+        $address = "";
+        if(isset($orderinfo->billing_address_1))
+        {
+            $address = $orderinfo->billing_address_1;
+        }        
+        if(isset($orderinfo->billing_city))
+        {
+            $address .= ", ".$orderinfo->billing_city;
+        }        
+        if(isset($orderinfo->billing_zone_name))
+        {
+            $address .= ", ".$orderinfo->billing_zone_name;
+        }        
+        return $address;
+
+    }
+
+    // Get Phone Number
+    public function get_phone_number($order){
+        $order->setNullOrderInformation();
+        $orderinfo = $order->getOrderInformation();
+        // var_dump($order->order_id);
+        $phone_number = "";
+        if(isset($orderinfo->billing_phone_1))
+        {
+            $phone_number = $orderinfo->billing_phone_1;
+        }        
+        if($phone_number=="" && isset($orderinfo->billing_phone_2))
+        {
+            $phone_number = $orderinfo->billing_phone_2;
+        }        
+        return convert_phone_number($phone_number);
+
+    }
+
+    // Convert Phone number
+    function convert_phone_number($phone_number)
+    {
+        $ret_val = $phone_number;
+        if(strlen($phone_number)==10 && strpos($phone_number,"-")===false)
+        {
+            $ret_val = substr_replace($ret_val, "-", 3, 0);
+            $ret_val = substr_replace($ret_val, "-", 7, 0);
+            return $ret_val;
+        }
+        // if(strpos($phone_number,"-"))
+    
+        return $ret_val;
+    }
     // Get Number of Bins
     public function get_number_of_bins($order){
         $number_bins = "";
@@ -1178,6 +1231,8 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
             'renewal_amount' => JText::_('J2STORE_SUBSCRIPTION_RENEWAL_AMOUNT'),
             'trash_pickup' => 'Day of Trash Pickup',
             'number_bins' => 'Number of Bins',
+            'phone_number' => 'Phone Number',
+            'address' => 'Address',
             );
         if(count($subscriptions)){
             $subsStatusObj = \J2Store\Subscription\Helper\SubscriptionStatus::getInstance();
@@ -1191,7 +1246,9 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                 ));
                 $trash_pickup = $this->get_trash_pickup_info($parentOrder);
                 $number_bins = $this->get_number_of_bins($parentOrder);
-
+                $phone_number = $this->get_phone_number($parentOrder);
+                $address = $this->get_full_address($parentOrder);
+                
                 foreach ($data['headers'] as $field => $fieldHeader){
                     if($field == 'status') {
                         $status = $subsStatusObj->getStatus($subscription->$field);
@@ -1203,8 +1260,7 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                             $date = JFactory::getDate($subscription->$field, $tz);
                             $data['content'][$key][] = $date->format($j2_params->get('date_format', JText::_('DATE_FORMAT_LC1')), true);
                         }
-                    } else if($field == 'user_name')
-                    {
+                    } else if($field == 'user_name'){
                         $userDetails = JFactory::getUser($subscription->user_id);
                         $data['content'][$key][] = $userDetails->get('name');
                     } else if($field == 'renewal_amount'){
@@ -1214,6 +1270,10 @@ class J2StoreControllerAppSubscriptionproduct extends J2StoreAppController
                         $data['content'][$key][] = $trash_pickup;
                     } else if($field == 'number_bins'){
                         $data['content'][$key][] = $number_bins;
+                    } else if($field == 'phone_number'){
+                        $data['content'][$key][] = $phone_number;
+                    } else if($field == 'address'){
+                        $data['content'][$key][] = $address;
                     } else {
                         $data['content'][$key][] = $subscription->$field;
                     }
